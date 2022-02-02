@@ -1,0 +1,42 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.sidebar_wrapper {
+  position: fixed;
+  background-color: transparent;
+  max-width: 240px;
+  width: 100%;
+  height: 100vh;
+
+  .sidebar {
+    padding: 36px 13px 0 0;
+
+    .logo_wrapper {
+      @include flex(row, flex-start, flex-start, nowrap);
+      margin-left: 20px;
+      :nth-child(2) {
+        margin-top: 9px;
+        margin-left: 1px;
+      }
+    }
+
+    .menu {
+      margin-top: 30px;
+      @include flex(column, flex-start);
+
+      .menu_link {
+        width: 100%;
+        padding-left: 20px;
+        height: 44px;
+        @include flex(row, center, flex-start);
+        span {
+          margin-left: 10px;
+        }
+        &.active {
+          background: $bg-menu-link;
+          border-radius: 0 8px 8px 0;
+        }
+      }
+    }
+  }
+}

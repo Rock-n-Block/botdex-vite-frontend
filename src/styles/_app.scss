@@ -5,12 +5,13 @@
 body {
   margin: 0;
 
-  font-family: Inter, sans-serif;
-  font-size: $font-size-default;
+  font-family: 'Readex Pro', sans-serif;
   font-weight: 400;
+  font-size: $font-size-default;
   line-height: $line-height-default;
 
-  color: black;
+  background: $bg-primary;
+  color: $text-primary;
 
   span,
   div {
@@ -30,6 +31,7 @@ p {
 
 a {
   text-decoration: none;
+  color: $text-primary;
 }
 
 img {
@@ -44,22 +46,26 @@ button {
   font-family: inherit;
 }
 
+#root {
+  background-image: url("src/assets/img/icons/bg_layer.png"), url("src/assets/img/icons/bg.png");
+  background-size: cover;
+}
+
 .main_wrapper {
   position: relative;
   z-index: 0;
-
   overflow: hidden;
-
+  margin-left: 240px;
+  padding: 0;
+  width: calc(100% - 240px);
   min-height: 100vh;
 }
 
 .page_wrapper {
-  margin: 0 auto;
-  padding: 0 73px 0 72px;
-
   width: 100%;
-  max-width: 1440px;
-  min-height: 100vh;
+  max-width: 1120px;
+  padding: 0 10px;
+  margin: 0 auto;
 }
 
 .modal-root {
