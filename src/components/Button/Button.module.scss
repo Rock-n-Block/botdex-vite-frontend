@@ -1,0 +1,53 @@
+@import 'src/styles/mixins';
+
+$bg-default: white;
+$color-default: black;
+$border-default: gray;
+
+.button {
+  box-sizing: border-box;
+  width: fit-content;
+
+  white-space: nowrap;
+  text-decoration: none;
+
+  cursor: pointer;
+
+  background-color: transparent;
+  border: none;
+  @include flex(row, center, center, nowrap);
+
+  &.default {
+    color: $color-default;
+    background: $bg-default;
+    border: 1px solid $border-default;
+    border-radius: 18px;
+  }
+
+  &.sm {
+  }
+
+  &.md {
+  }
+
+  &.lg {
+  }
+
+  &.filled {
+    &:hover,
+    &:focus {
+    }
+  }
+
+  &.outline {
+    &:hover,
+    &:focus {
+    }
+  }
+
+  &.disabled {
+    &:hover,
+    &:focus {
+    }
+  }
+}

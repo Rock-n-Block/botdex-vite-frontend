@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+
+  font-family: Inter, sans-serif;
+  font-size: $font-size-default;
+  font-weight: 400;
+  line-height: $line-height-default;
+
+  color: black;
+
+  span,
+  div {
+    font-feature-settings: 'liga' off;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+a,
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+.main_wrapper {
+  position: relative;
+  z-index: 0;
+
+  overflow: hidden;
+
+  min-height: 100vh;
+}
+
+.page_wrapper {
+  margin: 0 auto;
+  padding: 0 73px 0 72px;
+
+  width: 100%;
+  max-width: 1440px;
+  min-height: 100vh;
+}
+
+.modal-root {
+  z-index: 100;
+
+  overflow: hidden;
+
+  .modal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    height: 100%;
+
+    background: rgb(0 0 0 / 80%);
+  }
+
+  .modal-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+
+    padding: 50px 0;
+
+    overflow: auto;
+
+    width: 100%;
+
+    outline: 0;
+    @include flex(row, center, center);
+  }
+}
