@@ -3,13 +3,28 @@
 
 .sidebar_wrapper {
   position: fixed;
-  background-color: transparent;
   max-width: 240px;
   width: 100%;
   height: 100vh;
+  z-index: 80;
+  @include b(tablet) {
+    margin-top: 72px;
+    left: -100%;
+    visibility: visible;
+    transition: all 0.3s ease 0s;
+  }
+  &.active {
+    max-width: 270px;
+    width: 100%;
+    left: 0;
+    visibility: visible;
+  }
 
   .sidebar {
     padding: 36px 13px 0 0;
+    @include b(tablet) {
+      padding: 30px 13px 0 0;
+    }
 
     .logo_wrapper {
       @include flex(row, flex-start, flex-start, nowrap);
@@ -18,13 +33,29 @@
         margin-top: 9px;
         margin-left: 1px;
       }
+      @include b(tablet) {
+        display: none;
+      }
+    }
+
+    .btn_mobile {
+      width: calc(100% - 20px);
+      margin-left: 20px;
+      display: none;
+      @include b(tablet) {
+        display: block;
+      }
     }
 
     .menu {
       margin-top: 30px;
+      @include b(tablet) {
+        margin-top: 48px;
+      }
       @include flex(column, flex-start);
 
       .menu_link {
+        cursor: pointer;
         width: 100%;
         padding-left: 20px;
         height: 44px;
@@ -36,7 +67,68 @@
           background: $bg-menu-link;
           border-radius: 0 8px 8px 0;
         }
+
+        &_arrow {
+          margin-left: auto;
+          @include flex(row, center, center);
+          transition: transform 0.3s;
+          img {
+            width: 8px;
+            height: 4px;
+          }
+          &.active {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      .show_more_wrapper {
+        width: 100%;
+        padding: 9px 53px 12px;
+        @include flex(column, flex-start);
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .show_more_link {
+          white-space: nowrap;
+        }
       }
     }
   }
+}
+.sidebar_cover {
+  display: none;
+  @include b(tablet) {
+    position: fixed;
+    width: 200vh;
+    height: 100vh;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    display: none;
+    &.active {
+      display: block;
+    }
+  }
+}
+
+:global(.show_more-enter) {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+}
+:global(.show_more-enter-active) {
+  max-height: 1000px;
+  opacity: 1;
+  transition: max-height 300ms, opacity 500ms;
+}
+:global(.show_more-exit) {
+  max-height: 1000px;
+  opacity: 1;
+}
+:global(.show_more-exit-active) {
+  margin-top: 0;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 300ms, opacity 300ms;
 }

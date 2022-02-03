@@ -6,7 +6,7 @@ import cn from 'classnames';
 import s from './Button.module.scss';
 
 export interface IButton {
-  color?: 'default' | 'filled' | 'outline' | 'disabled';
+  color?: 'blue' | 'pink' | 'outline' | 'disabled';
   size?: 'lg' | 'md' | 'sm';
   className?: string;
   onClick?: (event: never) => void;
@@ -20,7 +20,7 @@ export interface IButton {
 }
 
 const Button: FC<PropsWithChildren<IButton>> = ({
-  color = 'default',
+  color = 'blue',
   size = 'lg',
   onClick = () => {},
   className,

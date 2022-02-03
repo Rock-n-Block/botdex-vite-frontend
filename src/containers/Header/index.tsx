@@ -1,22 +1,37 @@
 import { FC, useCallback, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { observer } from 'mobx-react-lite';
 import { useMst } from 'store';
 
+import cn from 'classnames';
+
 import { Button } from 'components';
 import { contracts } from 'config';
+import { addressWithDots } from 'utils';
 
 import { useWalletConnectorContext } from 'services';
 import { chainsEnum } from 'types';
+
+import Burger from './Burger';
+
+import { CertikImg, CertikSmImg, HackenImg, HackenSmImg, LogoSm, WalletImg } from 'assets/img';
 
 import s from './Header.module.scss';
 
 const Header: FC = observer(() => {
   const { connect, walletService } = useWalletConnectorContext();
-  const { user } = useMst();
+  const { user, sidebar } = useMst();
+  const { pathname } = useLocation();
+
   const connectToWallet = useCallback(() => {
     connect(chainsEnum['Binance-Smart-Chain'], 'MetaMask').catch(() => {});
   }, [connect]);
+  const toggleSidebar = useCallback(() => {
+    if (!sidebar.isOpen) {
+      sidebar.toggleSidebar();
+    }
+  }, [sidebar]);
 
   // get data before connect
   useEffect(() => {
@@ -37,8 +52,32 @@ const Header: FC = observer(() => {
   }, [walletService]);
 
   return (
-    <div className={s.header_wrapper}>
-      {!user.address ? <Button onClick={connectToWallet}>Connect Wallet</Button> : user.address}
+    <div className={cn(s.header_wrapper, pathname === '/staking' && s.hide)}>
+      <div className={s.header}>
+        <Burger className={s.burger} onClick={toggleSidebar} isMenuOpen={sidebar.isOpen} />
+        <div className={s.logo_mobile}>
+          <LogoSm />
+        </div>
+        <div className={s.audits}>
+          <HackenImg />
+          <CertikImg />
+        </div>
+        <div className={s.audits_sm}>
+          <HackenSmImg />
+          <CertikSmImg />
+        </div>
+        {!user.address ? (
+          <Button className={s.btn_mobile} color="blue" onClick={connectToWallet}>
+            <WalletImg />
+            <span>Connect Wallet</span>
+          </Button>
+        ) : (
+          <Button className={s.btn_mobile} color="blue" onClick={() => {}}>
+            <WalletImg />
+            <span>{addressWithDots(user.address)}</span>
+          </Button>
+        )}
+      </div>
     </div>
   );
 });

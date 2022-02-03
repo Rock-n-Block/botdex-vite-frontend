@@ -2,5 +2,34 @@
 @import 'src/styles/mixins';
 
 .coming_soon_wrapper {
+  width: 100%;
+  @include flex(column, center, center);
 
+  .logo_wrapper {
+    @include flex(row, center, flex-start, nowrap);
+    margin-top: 20px;
+    :nth-child(2) {
+      margin-top: 9px;
+      margin-left: 1px;
+    }
+  }
+
+  .coming_soon {
+    margin-top: 82px;
+    position: relative;
+    width: 316px;
+    img {
+      object-fit: cover;
+      max-width: 100%;
+    }
+    .title {
+      position: absolute;
+      font-family: 'Gemina', sans-serif;
+      font-size: 120px;
+      line-height: 100%;
+      text-align: center;
+      left: -148px;
+      bottom: -55px;
+    }
+  }
 }

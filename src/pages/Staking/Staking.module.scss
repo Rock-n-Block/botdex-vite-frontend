@@ -1,0 +1,38 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.staking_wrapper {
+  width: 100%;
+  padding: 23px 0 0;
+
+  .staking_preview {
+    padding: 41px 41px 19px;
+    background: url('src/assets/img/staking_preview.png');
+    background-size: cover;
+    border-radius: 12px;
+    @include b(mobile) {
+      background: url('src/assets/img/staking_preview_sm.png');
+      background-size: cover;
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 75px;
+
+      @include b(mobile) {
+        font-size: 40px;
+        line-height: 50px;
+      }
+    }
+    .subtitle {
+      margin-top: 12px;
+      max-width: 216px;
+    }
+  }
+
+  .pools_wrapper {
+    margin-top: 20px;
+    @include flex(row, flex-end, space-between);
+  }
+}

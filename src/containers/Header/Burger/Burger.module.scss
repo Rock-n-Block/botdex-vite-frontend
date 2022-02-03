@@ -1,0 +1,54 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.burger {
+  position: relative;
+  z-index: 120;
+  width: 26px;
+  height: 16px;
+  cursor: pointer;
+  display: none;
+  @include b(tablet) {
+    display: block;
+  }
+
+  &_line {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: $bg-white;
+    transition: 0.4s ease;
+
+    &_1 {
+      top: 0;
+    }
+
+    &_2 {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &_3 {
+      bottom: 0;
+    }
+  }
+
+  &_active {
+    .burger_line {
+      &_1 {
+        top: 50%;
+        transform: rotate(225deg) translateY(-50%);
+      }
+
+      &_2 {
+        opacity: 0;
+        transform: rotate(405deg);
+      }
+
+      &_3 {
+        top: 50%;
+        transform: rotate(-45deg) translateY(-50%);
+      }
+    }
+  }
+}

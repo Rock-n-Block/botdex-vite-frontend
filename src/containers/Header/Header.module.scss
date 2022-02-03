@@ -2,4 +2,75 @@
 @import 'src/styles/mixins';
 
 .header_wrapper {
+  width: 100%;
+  max-width: 1120px;
+  padding: 0 10px;
+  margin: 0 auto;
+  z-index: 110;
+  position: relative;
+  @include b(tablet) {
+    padding: 0 12px 0 18px;
+    height: 72px;
+    @include flex(row, center);
+  }
+  &.hide {
+    display: none;
+    @include b(tablet) {
+      @include flex(row, center);
+    }
+  }
+
+  .header {
+    margin-top: 20px;
+    @include flex(row, center, flex-end);
+    @include b(tablet) {
+      justify-content: flex-start;
+      margin: 0;
+      width: 100%;
+    }
+
+    .logo_mobile {
+      display: none;
+      margin-left: 13px;
+      @include b(tablet) {
+        display: block;
+      }
+    }
+
+    .audits {
+      margin-left: auto;
+      @include flex(row, center);
+      @include b(tablet) {
+        display: none;
+      }
+      :first-child {
+        margin-right: 26px;
+      }
+      :nth-child(2) {
+        margin-right: 21px;
+      }
+    }
+    .audits_sm {
+      margin-left: auto;
+      display: none;
+      @include b(tablet) {
+        @include flex(row, center);
+      }
+      :first-child {
+        margin-right: 15px;
+      }
+      :nth-child(2) {
+        margin-right: 23px;
+      }
+    }
+    .btn_mobile {
+      @include b(tablet) {
+        font-size: 10px;
+        line-height: 26px;
+        svg {
+          display: none;
+        }
+      }
+    }
+  }
 }

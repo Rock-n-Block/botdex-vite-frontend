@@ -7,14 +7,17 @@ import WalletConnect from './services/WalletConnect';
 const App: FC = () => {
   return (
     <WalletConnect>
-      <Sidebar />
-      <div className="main_wrapper">
-        <Header />
-        <div className="page_wrapper">
-          <RouterManager />
+      <div className="app">
+        <div className="bg" />
+        <Sidebar />
+        <div className="main_wrapper">
+          <Header />
+          <div className="page_wrapper">
+            <RouterManager />
+          </div>
         </div>
-        <Footer />
       </div>
+      <Footer />
     </WalletConnect>
   );
 };

@@ -3,15 +3,19 @@ import { createContext, useContext } from 'react';
 import makeInspectable from 'mobx-devtools-mst';
 import { Instance, onSnapshot, types } from 'mobx-state-tree';
 
-import { UserModel } from './Models';
+import { SidebarModel, UserModel } from './Models';
 
 const RootModel = types.model('RootModel', {
   user: UserModel,
+  sidebar: SidebarModel,
 });
 
 export const rootStore = RootModel.create({
   user: {
     address: null,
+  },
+  sidebar: {
+    isOpen: window.innerWidth >= 1024,
   },
 });
 
