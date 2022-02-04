@@ -66,18 +66,19 @@ const GetData: FC = ({ children }) => {
     }
   }, [walletService, user.address, pools]);
 
-  const getPoolData = useCallback(() => {
-    getPools();
+  const getPoolData = useCallback(async () => {
+    await getPools();
   }, [getPools]);
 
   useEffect(() => {
-    getPoolData();
+    getPoolData().then();
   }, [getPoolData]);
 
   useEffect(() => {
     if (pools.isRefresh) {
-      getPoolData();
-      pools.refreshData(false);
+      getPoolData().then(() => {
+        pools.refreshData(false);
+      });
     }
   }, [getPoolData, pools.isRefresh, pools]);
 

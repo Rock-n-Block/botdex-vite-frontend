@@ -5,6 +5,7 @@ import { useMst } from '../../../store';
 import { observer } from 'mobx-react-lite';
 
 import { Button } from 'components';
+import { convertSeconds } from 'utils';
 
 import { useWalletConnectorContext } from 'services';
 import { chainsEnum } from 'types';
@@ -32,19 +33,19 @@ const PoolCard: FC<any> = observer(({ stake }) => {
         <div className={s.stake_card__lock}>
           <img src={lock} alt="lock" />
         </div>
-        <div className="text-500">Lock for a {stake.period}</div>
+        <div className="text-500">Lock for a {convertSeconds(stake.timeLockUp)}</div>
         <div className={s.stake_card__percent_wrapper}>
-          <div className={s.percent}>{stake.percent}</div>
+          <div className={s.percent}>{stake.APY / 10}%</div>
           <span className={s.percent_token}>in BOT</span>
         </div>
         <div className="text-smd text-500">Start staking</div>
         {user.address === '' && (
-          <Button size="sm" color="blue" className={s.stake_card__btn} onClick={connectToWallet}>
+          <Button size="sm" color="white" className={s.stake_card__btn} onClick={connectToWallet}>
             <span className="text-ssmd text-bold">Unlock Wallet</span>
           </Button>
         )}
         {user.address !== '' && (
-          <Button size="sm" color="blue" className={s.stake_card__btn} onClick={() => {}}>
+          <Button size="sm" color="white" className={s.stake_card__btn} onClick={() => {}}>
             <span className="text-ssmd text-bold">Stake</span>
           </Button>
         )}
