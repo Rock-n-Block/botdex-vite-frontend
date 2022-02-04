@@ -28,8 +28,8 @@ const Footer: FC = () => {
           <LogoTextFooterSm className={s.mobile} />
         </div>
         <div className={s.links}>
-          {links.map((linkBlock) => (
-            <div className={s.link_block}>
+          {links.map((linkBlock, index) => (
+            <div key={linkBlock[index].name} className={s.link_block}>
               {linkBlock.map((link) => (
                 <a key={link.name} href={link.path} className={s.link}>
                   {link.name}

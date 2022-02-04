@@ -1,15 +1,14 @@
 import { FC } from 'react';
 
+import { useMst } from '../../store';
 import { observer } from 'mobx-react-lite';
 
 import { PoolCard } from 'containers';
 
-import { stakesTemp } from './mock';
-
 import s from './Staking.module.scss';
 
 const Staking: FC = observer(() => {
-  // const { stakes: stakeStore, user } = useMst();
+  const { pools } = useMst();
   // const [stakes, setStakes] = useState<any>(null);
   //
   // useEffect(() => {
@@ -26,7 +25,9 @@ const Staking: FC = observer(() => {
         <div className={s.subtitle}>Simply stake tokens to earn. High APR, low risk.</div>
       </div>
       <div className={s.pools_wrapper}>
-        {stakesTemp && stakesTemp.map((stake: any) => <PoolCard key={stake.id} stake={stake} />)}
+        {pools.items.map((stake: any) => (
+          <PoolCard key={stake.id} stake={stake} />
+        ))}
       </div>
     </div>
   );

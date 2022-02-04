@@ -4,6 +4,9 @@
 .coming_soon_wrapper {
   width: 100%;
   @include flex(column, center, center);
+  @include b(tablet) {
+    padding: 72px 10px 0;
+  }
 
   .logo_wrapper {
     @include flex(row, center, flex-start, nowrap);
@@ -18,6 +21,9 @@
     margin-top: 82px;
     position: relative;
     width: 316px;
+    @include b(extramobile) {
+      width: 70%;
+    }
     img {
       object-fit: cover;
       max-width: 100%;
@@ -30,6 +36,11 @@
       text-align: center;
       left: -148px;
       bottom: -55px;
+      @include b(extramobile) {
+        font-size: 60px;
+        left: -10px;
+        bottom: 0;
+      }
     }
   }
 }

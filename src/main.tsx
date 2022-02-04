@@ -5,14 +5,20 @@ import { Provider, rootStore } from 'store';
 
 import App from 'App';
 
+import { GetData } from 'services';
+import WalletConnect from 'services/WalletConnect';
+
 import 'styles/index.scss';
 
 const root = document.getElementById('root');
 const app = (
   <Provider value={rootStore}>
-    <Router>
-      <App />
-    </Router>
+    <WalletConnect>
+      <GetData />
+      <Router>
+        <App />
+      </Router>
+    </WalletConnect>
   </Provider>
 );
 

@@ -3,11 +3,12 @@ import { createContext, useContext } from 'react';
 import makeInspectable from 'mobx-devtools-mst';
 import { Instance, onSnapshot, types } from 'mobx-state-tree';
 
-import { SidebarModel, UserModel } from './Models';
+import { Pools, SidebarModel, UserModel } from './Models';
 
 const RootModel = types.model('RootModel', {
   user: UserModel,
   sidebar: SidebarModel,
+  pools: Pools,
 });
 
 export const rootStore = RootModel.create({
@@ -16,6 +17,10 @@ export const rootStore = RootModel.create({
   },
   sidebar: {
     isOpen: window.innerWidth >= 1024,
+  },
+  pools: {
+    items: [],
+    isRefresh: false,
   },
 });
 
@@ -28,6 +33,7 @@ const RootStoreContext = createContext<RootInstance | null>(null);
 export const { Provider } = RootStoreContext;
 
 onSnapshot(rootStore, (snapshot) => {
+  // eslint-disable-next-line no-console
   console.log(snapshot);
 });
 

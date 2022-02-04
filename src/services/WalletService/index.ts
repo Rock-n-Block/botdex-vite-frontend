@@ -1,5 +1,5 @@
 import { ConnectWallet } from '@amfi/connect-wallet';
-import { IConnect, IError, IConnectorMessage } from '@amfi/connect-wallet/dist/interface';
+import { IConnect, IConnectorMessage, IError } from '@amfi/connect-wallet/dist/interface';
 import BigNumber from 'bignumber.js/bignumber';
 import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
@@ -25,7 +25,7 @@ export class WalletService {
 
   public contracts: any = {};
 
-  private currentChain: chainsEnum = chainsEnum.Ethereum;
+  private currentChain: chainsEnum = chainsEnum['Binance-Smart-Chain'];
 
   constructor(initProvider?: any) {
     this.connectWallet = new ConnectWallet(initProvider);
@@ -189,10 +189,7 @@ export class WalletService {
         result === '0'
           ? null
           : +new BigNumber(result).dividedBy(new BigNumber(10).pow(tokenDecimals)).toString(10);
-      if (result && new BigNumber(result).minus(amount || 0).isPositive()) {
-        return true;
-      }
-      return false;
+      return !!(result && new BigNumber(result).minus(amount || 0).isPositive());
     } catch (error) {
       return false;
     }

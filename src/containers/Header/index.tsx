@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect } from 'react';
+import { FC, useCallback } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { observer } from 'mobx-react-lite';
@@ -7,7 +7,6 @@ import { useMst } from 'store';
 import cn from 'classnames';
 
 import { Button } from 'components';
-import { contracts } from 'config';
 import { addressWithDots } from 'utils';
 
 import { useWalletConnectorContext } from 'services';
@@ -20,7 +19,7 @@ import { CertikImg, CertikSmImg, HackenImg, HackenSmImg, LogoSm, WalletImg } fro
 import s from './Header.module.scss';
 
 const Header: FC = observer(() => {
-  const { connect, walletService } = useWalletConnectorContext();
+  const { connect } = useWalletConnectorContext();
   const { user, sidebar } = useMst();
   const { pathname } = useLocation();
 
@@ -32,24 +31,6 @@ const Header: FC = observer(() => {
       sidebar.toggleSidebar();
     }
   }, [sidebar]);
-
-  // get data before connect
-  useEffect(() => {
-    walletService
-      .callContractMethod({
-        contractName: 'STAKING',
-        methodName: 'fees',
-        data: [1],
-        contractAddress: contracts.params.STAKING[contracts.type].address,
-        contractAbi: contracts.params.STAKING[contracts.type].abi,
-      })
-      .then((fees) => {
-        console.log(fees, 'fees');
-      })
-      .catch((err) => {
-        console.log('err', err);
-      });
-  }, [walletService]);
 
   return (
     <div className={cn(s.header_wrapper, pathname === '/staking' && s.hide)}>
