@@ -12,6 +12,7 @@
     padding: 0 12px 0 18px;
     height: 72px;
     @include flex(row, center);
+    background: $bg-primary;
   }
   &.hide {
     display: none;
@@ -21,12 +22,18 @@
   }
 
   .header {
-    margin-top: 20px;
     @include flex(row, center, flex-end);
+    height: 62px;
+    padding: 0 20px;
+    border-radius: 12px 0 0 12px;
+    background-color: rgba(255, 255, 255, 0.1);
     @include b(tablet) {
       justify-content: flex-start;
       margin: 0;
       width: 100%;
+      padding: 0;
+      background-color: transparent;
+      border: 0;
     }
 
     .logo_mobile {

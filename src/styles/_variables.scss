@@ -20,7 +20,14 @@ $bg-white: #fff;
 $bg-footer: #060028;
 $bg-divider: #685096;
 $bg-purple: #7649fe;
+$bg-modal: linear-gradient(0deg, #1d125b, #1d125b);
+$bg-slider-track: rgba(255, 255, 255, 0.2);
+$bg-slider-handle: linear-gradient(0deg, #c630f6, #c630f6);
 
 $bg-sidebar: linear-gradient(159.02deg, #300a36 20.74%, #1c0fc6 77.56%, #0511ec 98.67%);
 $bg-menu-link: #0a42ea;
 $text-primary: #f4f4f4;
+
+$border-input: 3px solid rgba(255, 255, 255, 0.2);
+
+$error: #df2935;

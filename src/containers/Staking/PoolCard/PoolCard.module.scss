@@ -1,10 +1,11 @@
 @import 'src/styles/variables';
 @import 'src/styles/mixins';
 
-$bg-m1: linear-gradient(98.94deg, #1d1135 -22.87%, #3b2a5e 94.67%);
-$bg-m3: linear-gradient(98.94deg, #533292 -22.87%, #3e2177 94.67%);
-$bg-m6: linear-gradient(180deg, #a62a96 0%, #440f3d 100%);
-$bg-m12: linear-gradient(180deg, #7649fe 0%, #3d2094 100%);
+$bg-m1: linear-gradient(98.94deg, #241443 -22.87%, #3d1986 94.67%);
+$bg-m3: linear-gradient(90deg, #163166 -0.19%, #2a13b4 100%),
+  linear-gradient(98.94deg, #241443 -22.87%, #3d1986 94.67%);
+$bg-m6: linear-gradient(180deg, #c630f6 0%, #710494 100%);
+$bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
 
 .stake_card {
   width: 260px;
@@ -115,6 +116,11 @@ $bg-m12: linear-gradient(180deg, #7649fe 0%, #3d2094 100%);
     margin: 10px 0 30px;
   }
 
+  .arrow_dropdown {
+    @include flex(row, center);
+    margin-left: 10px;
+  }
+
   .details_wrapper {
     margin-top: 10px;
     @include flex(column, center, flex-start);
@@ -141,7 +147,7 @@ $bg-m12: linear-gradient(180deg, #7649fe 0%, #3d2094 100%);
   }
 }
 
-:global(.show-enter) {
+:global(.show_details-enter) {
   margin-top: 0;
 
   max-height: 0;
@@ -149,7 +155,7 @@ $bg-m12: linear-gradient(180deg, #7649fe 0%, #3d2094 100%);
   opacity: 0;
 }
 
-:global(.show-enter-active) {
+:global(.show_details-enter-active) {
   max-height: 3500px;
 
   opacity: 1;
@@ -157,13 +163,13 @@ $bg-m12: linear-gradient(180deg, #7649fe 0%, #3d2094 100%);
   transition: max-height 300ms, opacity 100ms;
 }
 
-:global(.show-exit) {
+:global(.show_details-exit) {
   max-height: 3500px;
 
   opacity: 1;
 }
 
-:global(.show-exit-active) {
+:global(.show_details-exit-active) {
   margin-top: 0;
 
   max-height: 0;

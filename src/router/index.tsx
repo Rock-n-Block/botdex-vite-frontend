@@ -1,6 +1,17 @@
 import { ComingSoon, Exchange, Farms, Home, Staking } from 'pages';
 
-import { ExchangeImg, FarmsImg, HomeImg, StakingImg } from 'assets/img';
+import {
+  BridgeImg,
+  ExchangeImg,
+  FarmsImg,
+  GamefiImg,
+  HomeImg,
+  LotteryImg,
+  MarketplaceImg,
+  MessengerImg,
+  StakingImg,
+  WalletMenuImg,
+} from 'assets/img';
 
 export const routes = [
   {
@@ -9,6 +20,7 @@ export const routes = [
     component: <Home />,
     icon: HomeImg,
     menu: true,
+    comingSoon: false,
   },
   {
     name: 'Exchange',
@@ -16,6 +28,7 @@ export const routes = [
     component: <Exchange />,
     icon: ExchangeImg,
     menu: true,
+    comingSoon: false,
   },
   {
     name: 'Farms',
@@ -23,6 +36,7 @@ export const routes = [
     component: <Farms />,
     icon: FarmsImg,
     menu: true,
+    comingSoon: false,
   },
   {
     name: 'Staking',
@@ -30,6 +44,55 @@ export const routes = [
     component: <Staking />,
     icon: StakingImg,
     menu: true,
+    comingSoon: false,
+  },
+  {
+    name: 'Bridge',
+    path: '/bridge',
+    component: <ComingSoon />,
+    icon: BridgeImg,
+    menu: true,
+    comingSoon: true,
+  },
+  {
+    name: 'Wallet',
+    path: '/wallet',
+    component: <ComingSoon />,
+    icon: WalletMenuImg,
+    menu: true,
+    comingSoon: true,
+  },
+  {
+    name: 'Marketplace',
+    path: '/marketplace',
+    component: <ComingSoon />,
+    icon: MarketplaceImg,
+    menu: true,
+    comingSoon: true,
+  },
+  {
+    name: 'Gamefi',
+    path: '/gamefi',
+    component: <ComingSoon />,
+    icon: GamefiImg,
+    menu: true,
+    comingSoon: true,
+  },
+  {
+    name: 'Lottery',
+    path: '/lottery',
+    component: <ComingSoon />,
+    icon: LotteryImg,
+    menu: true,
+    comingSoon: true,
+  },
+  {
+    name: 'Messenger',
+    path: '/messenger',
+    component: <ComingSoon />,
+    icon: MessengerImg,
+    menu: true,
+    comingSoon: true,
   },
   {
     name: 'Coming Soon',
@@ -37,5 +100,6 @@ export const routes = [
     component: <ComingSoon />,
     icon: undefined,
     menu: false,
+    comingSoon: false,
   },
 ];

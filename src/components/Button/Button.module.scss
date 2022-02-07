@@ -12,36 +12,35 @@ $text-default: white;
   text-decoration: none;
 
   cursor: pointer;
-
-  background-color: transparent;
+  background: transparent;
   border: none;
   @include flex(row, center, center, nowrap);
-
-  &.sm {
-  }
-
-  &.md {
-  }
-
-  &.lg {
-  }
 
   &.blue {
     background: $bg-blue;
     box-shadow: 0 5px 0 $shadow-blue;
     border-radius: 11px;
     padding: 6px;
-    color: $text-default;
     font-weight: 700;
     font-size: 14px;
     line-height: 26px;
+    color: $text-default;
     svg {
       margin-right: 10px;
     }
   }
 
   &.pink {
+    background: #c630f6;
+    box-shadow: 0 5px 0 #6e1989;
+    border-radius: 11px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 26px;
+    padding: 20px;
+    color: $text-default;
   }
+
   &.white {
     background: #f4f4f4;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
@@ -52,16 +51,49 @@ $text-default: white;
     font-weight: 700;
     color: linear-gradient(98.94deg, #1d125b -22.87%, #090413 94.67%);
   }
+  &.gray {
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
+    border-radius: 12px;
+    padding: 6px 18px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
+    color: $text-default;
+  }
 
   &.outline {
+    border: 1px solid #f4f4f4;
+    box-sizing: border-box;
+    border-radius: 12px;
+    color: $text-default;
+    padding: 6px 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 26px;
     &:hover,
     &:focus {
     }
   }
 
   &.disabled {
+    background: rgba(197, 196, 195, 0.5);
+
     &:hover,
     &:focus {
     }
+  }
+
+  &.sm {
+  }
+
+  &.md {
+  }
+
+  &.lg {
+    padding: 20px;
+  }
+
+  &.isFullWidth {
+    width: 100%;
   }
 }

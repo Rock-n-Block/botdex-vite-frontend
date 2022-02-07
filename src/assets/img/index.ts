@@ -1,8 +1,14 @@
-export { default as HomeImg } from './icons/home.svg';
-export { default as ExchangeImg } from './icons/exchange.svg';
-export { default as FarmsImg } from './icons/farms.svg';
-export { default as StakingImg } from './icons/staking.svg';
-export { default as MoreImg } from './icons/more.svg';
+export { default as HomeImg } from './icons/menu/home.svg';
+export { default as ExchangeImg } from './icons/menu/exchange.svg';
+export { default as FarmsImg } from './icons/menu/farms.svg';
+export { default as StakingImg } from './icons/menu/staking.svg';
+export { default as MoreImg } from './icons/menu/more.svg';
+export { default as BridgeImg } from './icons/menu/bridge.svg';
+export { default as WalletMenuImg } from './icons/menu/wallet.svg';
+export { default as MarketplaceImg } from './icons/menu/marketplace.svg';
+export { default as GamefiImg } from './icons/menu/gamefi.svg';
+export { default as LotteryImg } from './icons/menu/lottery.svg';
+export { default as MessengerImg } from './icons/menu/messenger.svg';
 
 export { ReactComponent as Logo } from './icons/logo.svg';
 export { ReactComponent as LogoSm } from './icons/logo_sm.svg';
@@ -30,3 +36,5 @@ export { ReactComponent as Discord } from './icons/discord.svg';
 export { ReactComponent as Insta } from './icons/insta.svg';
 export { ReactComponent as Github } from './icons/github.svg';
 export { ReactComponent as Bsc } from './icons/bsc.svg';
+
+export { default as Error } from './icons/error.svg';

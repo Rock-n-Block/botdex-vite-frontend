@@ -33,6 +33,12 @@
 
   .pools_wrapper {
     margin-top: 20px;
-    @include flex(row, flex-end, space-between);
+    @include flex(row, flex-start, space-between);
+    @include b(mobile) {
+      flex-direction: column-reverse;
+    }
+    @include b(tablet) {
+      align-items: normal;
+    }
   }
 }

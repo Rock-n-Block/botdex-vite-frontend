@@ -38,7 +38,11 @@ img {
   max-width: 100%;
   object-fit: cover;
 }
-
+a {
+  &:hover {
+    color: $text-primary;
+  }
+}
 a,
 input,
 textarea,
@@ -65,18 +69,18 @@ button {
   @include b(tablet) {
     background: $bg-primary;
   }
-  &:before {
-    position: absolute;
-    width: 148px;
-    height: 185px;
-    content: '';
-    background-image: url('src/assets/img/icons/moon.png');
-    background-size: 100% 100%;
-    bottom: 35%;
-    @include b(tablet) {
-      display: none;
-    }
-  }
+  //&:before {
+  //  position: absolute;
+  //  width: 148px;
+  //  height: 185px;
+  //  content: '';
+  //  background-image: url('src/assets/img/icons/moon.png');
+  //  background-size: 100% 100%;
+  //  bottom: 35%;
+  //  @include b(tablet) {
+  //    display: none;
+  //  }
+  //}
   &:after {
     position: absolute;
     width: 100%;
@@ -94,8 +98,6 @@ button {
 }
 
 .main_wrapper {
-  position: relative;
-  z-index: 10;
   overflow: hidden;
   margin-left: 240px;
   padding: 0;
@@ -112,6 +114,8 @@ button {
   max-width: 1120px;
   padding: 0 10px;
   margin: 0 auto;
+  z-index: 10;
+  position: relative;
 }
 
 .modal-root {

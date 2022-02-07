@@ -7,4 +7,5 @@ export interface IModalProps {
   className?: string;
   visible: boolean;
   onClose: () => void;
+  title?: string;
 }

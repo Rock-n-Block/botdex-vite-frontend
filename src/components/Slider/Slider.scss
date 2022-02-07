@@ -1,0 +1,34 @@
+@import 'src/styles/variables';
+
+.slider {
+  height: fit-content;
+
+  &:hover {
+    .ant-slider-rail,
+    .ant-slider-track {
+      background: $bg-slider-track;
+    }
+  }
+
+  .ant-slider-rail,
+  .ant-slider-track {
+    height: 1px;
+
+    background: $bg-slider-track;
+  }
+
+  .ant-slider-handle {
+    margin-top: -16px;
+
+    width: 32px;
+    height: 31px;
+
+    background: $bg-slider-handle;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+    border: none;
+
+    &:not(:active) {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.12);
+    }
+  }
+}

@@ -8,26 +8,15 @@ import { useMst } from 'store';
 import cn from 'classnames';
 import { routes } from 'router';
 
-import { Button } from '../../components';
-
-import { useWalletConnectorContext } from '../../services';
-import { chainsEnum } from '../../types';
-
-import { addressWithDots } from '../../utils';
-
-import { ArrowImg, Logo, LogoText, MoreImg, WalletImg } from 'assets/img';
+import { ArrowImg, Logo, LogoText, MoreImg } from 'assets/img';
 
 import s from './Sidebar.module.scss';
 
 const Sidebar: FC = observer(() => {
   const { pathname } = useLocation();
-  const { connect } = useWalletConnectorContext();
-  const { user, sidebar } = useMst();
+  const { sidebar } = useMst();
   const [isOpenShowMore, setOpenShowMore] = useState<boolean>(false);
 
-  const connectToWallet = useCallback(() => {
-    connect(chainsEnum['Binance-Smart-Chain'], 'MetaMask').catch(() => {});
-  }, [connect]);
   const handleOpenShowMore = useCallback(() => {
     setOpenShowMore(!isOpenShowMore);
   }, [isOpenShowMore]);
@@ -47,19 +36,8 @@ const Sidebar: FC = observer(() => {
             <Logo />
             <LogoText />
           </div>
-          {!user.address ? (
-            <Button className={s.btn_mobile} color="blue" onClick={connectToWallet}>
-              <WalletImg />
-              <span>Connect Wallet</span>
-            </Button>
-          ) : (
-            <Button className={s.btn_mobile} color="blue" onClick={() => {}}>
-              <WalletImg />
-              <span>{addressWithDots(user.address)}</span>
-            </Button>
-          )}
           <div className={s.menu}>
-            {routes.map(({ name, path, icon, menu }) => {
+            {routes.map(({ name, path, icon, menu, comingSoon }) => {
               if (menu) {
                 return (
                   <Link
@@ -69,6 +47,7 @@ const Sidebar: FC = observer(() => {
                   >
                     <img src={icon} alt={name} />
                     <span>{name}</span>
+                    {comingSoon && <div className={s.soon}>Soon</div>}
                   </Link>
                 );
               }
@@ -78,7 +57,7 @@ const Sidebar: FC = observer(() => {
               onKeyDown={() => {}}
               role="button"
               tabIndex={0}
-              className={s.menu_link}
+              className={cn(s.menu_link, isOpenShowMore && s.active)}
               onClick={handleOpenShowMore}
             >
               <img src={MoreImg} alt="" />
@@ -98,16 +77,28 @@ const Sidebar: FC = observer(() => {
             >
               <div className={s.show_more_wrapper}>
                 <Link to="/coming-soon" className={s.show_more_link}>
-                  GameFi
+                  Audit CertiK
                 </Link>
                 <Link to="/coming-soon" className={s.show_more_link}>
-                  Marketplace
+                  Audit Hacken
                 </Link>
                 <Link to="/coming-soon" className={s.show_more_link}>
-                  Lottery
+                  About $BOT
                 </Link>
                 <Link to="/coming-soon" className={s.show_more_link}>
-                  Wallet
+                  Team
+                </Link>
+                <Link to="/coming-soon" className={s.show_more_link}>
+                  Whitepaper
+                </Link>
+                <Link to="/coming-soon" className={s.show_more_link}>
+                  Deck
+                </Link>
+                <Link to="/coming-soon" className={s.show_more_link}>
+                  Partners
+                </Link>
+                <Link to="/coming-soon" className={s.show_more_link}>
+                  Blog
                 </Link>
               </div>
             </CSSTransition>

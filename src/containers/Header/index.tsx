@@ -27,9 +27,7 @@ const Header: FC = observer(() => {
     connect(chainsEnum['Binance-Smart-Chain'], 'MetaMask').catch(() => {});
   }, [connect]);
   const toggleSidebar = useCallback(() => {
-    if (!sidebar.isOpen) {
-      sidebar.toggleSidebar();
-    }
+    sidebar.toggleSidebar();
   }, [sidebar]);
 
   return (
@@ -48,12 +46,12 @@ const Header: FC = observer(() => {
           <CertikSmImg />
         </div>
         {!user.address ? (
-          <Button className={s.btn_mobile} color="blue" onClick={connectToWallet}>
+          <Button className={s.btn_mobile} color="blue" size="sm" onClick={connectToWallet}>
             <WalletImg />
             <span>Connect Wallet</span>
           </Button>
         ) : (
-          <Button className={s.btn_mobile} color="blue" onClick={() => {}}>
+          <Button className={s.btn_mobile} color="blue" size="sm" onClick={() => {}}>
             <WalletImg />
             <span>{addressWithDots(user.address)}</span>
           </Button>

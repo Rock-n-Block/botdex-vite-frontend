@@ -6,15 +6,17 @@
   max-width: 240px;
   width: 100%;
   height: 100vh;
-  z-index: 80;
+  z-index: 60;
+  @include flex(row);
   @include b(tablet) {
+    max-width: 135px;
+    background: $bg-primary;
     margin-top: 72px;
     left: -100%;
     visibility: visible;
     transition: all 0.3s ease 0s;
   }
   &.active {
-    max-width: 270px;
     width: 100%;
     left: 0;
     visibility: visible;
@@ -22,8 +24,12 @@
 
   .sidebar {
     padding: 36px 13px 0 0;
+    flex-grow: 1;
+    width: 100%;
     @include b(tablet) {
-      padding: 30px 13px 0 0;
+      padding: 0;
+      background: linear-gradient(180deg, #2e1d8f 0%, #1f1080 100%);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
     }
 
     .logo_wrapper {
@@ -48,10 +54,6 @@
     }
 
     .menu {
-      margin-top: 30px;
-      @include b(tablet) {
-        margin-top: 48px;
-      }
       @include flex(column, flex-start);
 
       .menu_link {
@@ -60,8 +62,36 @@
         padding-left: 20px;
         height: 44px;
         @include flex(row, center, flex-start);
+        @include b(tablet) {
+          padding-left: 5px;
+        }
         span {
           margin-left: 10px;
+          @include b(tablet) {
+            font-size: 12px;
+            line-height: 15px;
+            margin-left: 6px;
+          }
+        }
+        img {
+          @include b(tablet) {
+            width: 14px;
+            height: 14px;
+          }
+        }
+        .soon {
+          background: linear-gradient(132.83deg, #d715ff 0%, #1a26ff 75.95%);
+          border-radius: 12px;
+          padding: 3px 8px;
+          font-size: 14px;
+          line-height: 17px;
+          margin-left: auto;
+          @include b(tablet) {
+            font-size: 9px;
+            line-height: 11px;
+            padding: 4px;
+            margin-right: 5px;
+          }
         }
         &.active {
           background: $bg-menu-link;
@@ -70,6 +100,7 @@
 
         &_arrow {
           margin-left: auto;
+          margin-right: 20px;
           @include flex(row, center, center);
           transition: transform 0.3s;
           img {
@@ -88,9 +119,18 @@
         @include flex(column, flex-start);
         overflow: hidden;
         text-overflow: ellipsis;
+        @include b(tablet) {
+          padding: 19px 10px;
+          font-size: 12px;
+          line-height: 15px;
+        }
 
         .show_more_link {
           white-space: nowrap;
+          margin-bottom: 20px;
+          &:last-of-type {
+            margin-bottom: 0;
+          }
         }
       }
     }
@@ -98,13 +138,14 @@
 }
 .sidebar_cover {
   display: none;
+  background-color: rgba(0, 0, 0, 0.4);
   @include b(tablet) {
     position: fixed;
     width: 200vh;
     height: 100vh;
     top: 0;
     right: 0;
-    z-index: 100;
+    z-index: 50;
     display: none;
     &.active {
       display: block;

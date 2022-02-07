@@ -6,8 +6,9 @@ import cn from 'classnames';
 import s from './Button.module.scss';
 
 export interface IButton {
-  color?: 'blue' | 'pink' | 'white' | 'outline' | 'disabled';
+  color?: 'blue' | 'pink' | 'white' | 'gray' | 'outline' | 'disabled';
   size?: 'lg' | 'md' | 'sm';
+  isFullWidth?: boolean;
   className?: string;
   onClick?: (event: never) => void;
   type?: 'button' | 'submit';
@@ -17,11 +18,13 @@ export interface IButton {
   style?: CSSProperties;
   href?: string;
   btnRef?: RefObject<HTMLButtonElement>;
+  loading?: boolean;
 }
 
 const Button: FC<PropsWithChildren<IButton>> = ({
   color = 'blue',
   size = 'lg',
+  isFullWidth = false,
   onClick = () => {},
   className,
   type = 'button',
@@ -29,6 +32,7 @@ const Button: FC<PropsWithChildren<IButton>> = ({
   disabled,
   href,
   btnRef,
+  loading = false,
   onMouseLeave,
   onMouseOver = () => {},
 }) => {
@@ -48,14 +52,15 @@ const Button: FC<PropsWithChildren<IButton>> = ({
       ref={btnRef}
       type={type === 'submit' ? 'submit' : 'button'}
       className={cn(s.button, s[color], s[size], className, {
-        [s.disabled]: disabled || color === 'disabled',
+        [s.disabled]: disabled || color === 'disabled' || loading,
+        [s.isFullWidth]: isFullWidth,
       })}
       onClick={onClick}
-      disabled={disabled}
+      disabled={disabled || loading}
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseOver}
     >
-      {children}
+      {loading ? <span>In progress...</span> : children}
     </button>
   );
 };

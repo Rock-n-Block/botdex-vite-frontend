@@ -112,7 +112,7 @@ export class WalletService {
   }: {
     method: string;
     data: Array<any>;
-    contract: 'BOND';
+    contract: 'STAKING';
     tx?: any;
     to?: string;
     walletAddress?: string;
