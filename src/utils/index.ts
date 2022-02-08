@@ -2,6 +2,8 @@ import BigNumber from 'bignumber.js/bignumber';
 
 export { default as addressWithDots } from './addressWithDots';
 
+type strOrNum = string | number;
+
 export const convertSeconds = (time: number): string => {
   let result = time / 60;
   if (result >= 60) {
@@ -25,4 +27,8 @@ export const checkValueDecimals = (value: string, decimals: string | number) => 
     return new BigNumber(value).toFixed(18, 1);
   }
   return value;
+};
+
+export const getValueDecimals = (amount: strOrNum, decimals: strOrNum): any => {
+  return new BigNumber(amount).multipliedBy(new BigNumber(10).pow(decimals)).toString(10);
 };

@@ -163,35 +163,38 @@ export class WalletService {
     amount,
   }: {
     contractName: string;
-    approvedAddress?: string;
+    approvedAddress: string;
     walletAddress?: string;
     amount?: string | number;
-  }): Promise<boolean> {
+  }): Promise<{ allowance: boolean; tokenDecimals: string }> {
     try {
       const contract = this.connectWallet.getContract({
-        address: contracts.params[contractName][contracts.type].address,
-        abi: contracts.params[contractName][contracts.type].abi,
+        address: approvedAddress,
+        // contracts.params[contractName][this.currentChain][contracts.type].address,
+        abi: erc20Abi as any,
       });
       const walletAdr = walletAddress || this.walletAddress;
 
       let result = await contract.methods
         .allowance(
           walletAdr,
-          approvedAddress || contracts.params[contractName][contracts.type].address,
+          // approvedAddress,
+          contracts.params[contractName][contracts.type].address,
         )
         .call();
 
-      const tokenDecimals = await this.getTokenDecimals(
-        contracts.params[contractName][contracts.type].address,
-      );
+      const tokenDecimals = await this.getTokenDecimals(approvedAddress);
 
       result =
         result === '0'
           ? null
           : +new BigNumber(result).dividedBy(new BigNumber(10).pow(tokenDecimals)).toString(10);
-      return !!(result && new BigNumber(result).minus(amount || 0).isPositive());
+      if (result && new BigNumber(result).minus(amount || 0).isPositive()) {
+        return { allowance: true, tokenDecimals };
+      }
+      return { allowance: false, tokenDecimals };
     } catch (error) {
-      return false;
+      return { allowance: false, tokenDecimals: '' };
     }
   }
 
@@ -199,25 +202,23 @@ export class WalletService {
     contractName,
     approvedAddress,
     walletAddress,
+    approveAmount,
   }: {
     contractName: string;
     approvedAddress?: string;
     walletAddress?: string;
+    approveAmount: number;
   }) {
     try {
-      const approveMethod = WalletService.getMethodInterface(
-        contracts.params[contractName][contracts.type].abi,
-        'approve',
-      );
+      const approveMethod = WalletService.getMethodInterface(erc20Abi, 'approve');
 
       const approveSignature = this.encodeFunctionCall(approveMethod, [
-        approvedAddress || walletAddress || this.walletAddress,
-        '115792089237316195423570985008687907853269984665640564039457584007913129639935',
+        contracts.params[contractName][contracts.type].address,
+        approveAmount.toString(),
       ]);
-
       return this.sendTransaction({
         from: walletAddress || this.walletAddress,
-        to: contracts.params[contractName][contracts.type].address,
+        to: approvedAddress,
         data: approveSignature,
       });
     } catch (error) {

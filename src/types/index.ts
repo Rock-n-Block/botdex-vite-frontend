@@ -9,3 +9,11 @@ export interface IModalProps {
   onClose: () => void;
   title?: string;
 }
+
+export interface ISendingTokenProps {
+  address: string;
+  symbol: string;
+  image?: string;
+  decimals?: string | number;
+  price?: string;
+}
