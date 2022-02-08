@@ -91,6 +91,9 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
   &__lock {
     margin-bottom: 11px;
   }
+  .lock {
+    font-weight: 500;
+  }
 
   &__percent_wrapper {
     width: 100%;
@@ -110,6 +113,12 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
         opacity: 0.5;
       }
     }
+  }
+
+  .start_staking {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
   }
 
   &__btn {

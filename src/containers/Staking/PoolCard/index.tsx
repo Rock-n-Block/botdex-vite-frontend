@@ -25,10 +25,10 @@ import lock from 'assets/img/icons/lock.svg';
 import s from './PoolCard.module.scss';
 
 interface IPoolCardProps {
-  stake: IPoolItem;
+  pool: IPoolItem;
 }
 
-const PoolCard: FC<IPoolCardProps> = observer(({ stake }) => {
+const PoolCard: FC<IPoolCardProps> = observer(({ pool }) => {
   const { connect, walletService } = useWalletConnectorContext();
   const { user, pools } = useMst();
   const [isStakeModalVisible, handleOpenStakeModal, handleCloseStakeModal] = useModal(false);
@@ -49,7 +49,7 @@ const PoolCard: FC<IPoolCardProps> = observer(({ stake }) => {
       setCollecting(true);
       await walletService.createTransaction({
         method: 'withdrawReward',
-        data: [stake.id],
+        data: [pool.id],
         contract: 'STAKING',
       });
       setCollecting(false);
@@ -58,25 +58,31 @@ const PoolCard: FC<IPoolCardProps> = observer(({ stake }) => {
       console.log(err);
       setCollecting(false);
     }
-  }, [stake.id, pools, walletService]);
+  }, [pool.id, pools, walletService]);
 
   const calculateReward = useCallback(async () => {
-    const rewardAmount = await walletService.callContractMethod({
-      contractName: 'STAKING',
-      methodName: 'calculateReward',
-      contractAddress: contracts.params.STAKING[contracts.type].address,
-      contractAbi: contracts.params.STAKING[contracts.type].abi,
-      data: [stake.id, user.address],
-    });
-    setReward(
-      new BigNumber(rewardAmount).dividedBy(new BigNumber(10).pow(18)).toFixed(7).toString(),
-    );
-  }, [stake.id, user.address, walletService]);
+    if (user.address) {
+      try {
+        const rewardAmount = await walletService.callContractMethod({
+          contractName: 'STAKING',
+          methodName: 'calculateReward',
+          contractAddress: contracts.params.STAKING[contracts.type].address,
+          contractAbi: contracts.params.STAKING[contracts.type].abi,
+          data: [pool.id, user.address],
+        });
+        setReward(
+          new BigNumber(rewardAmount).dividedBy(new BigNumber(10).pow(18)).toFixed(7).toString(),
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }, [pool.id, user.address, walletService]);
 
   const calculateCollectTime = useMemo(() => {
-    const startDate = parseInt(stake.userData.start, 10);
-    const timeLockUp = parseInt(stake.timeLockUp, 10);
-    const amount = parseInt(stake.userData.amount, 10);
+    const startDate = parseInt(pool.userData.start, 10);
+    const timeLockUp = parseInt(pool.timeLockUp, 10);
+    const amount = parseInt(pool.userData.amount, 10);
     if (startDate === 0) {
       return format(Date.now() + timeLockUp, 'yyyy.dd.MM');
     }
@@ -88,7 +94,7 @@ const PoolCard: FC<IPoolCardProps> = observer(({ stake }) => {
       return format(Date.now() + timeLockUp, 'yyyy.dd.MM');
     }
     return 0;
-  }, [stake.timeLockUp, stake.userData.amount, stake.userData.start]);
+  }, [pool.timeLockUp, pool.userData.amount, pool.userData.start]);
 
   useEffect(() => {
     calculateReward().catch((err) => console.log(err));
@@ -101,27 +107,24 @@ const PoolCard: FC<IPoolCardProps> = observer(({ stake }) => {
           <div className={s.stake_card__lock}>
             <img src={lock} alt="lock" />
           </div>
-          <div className="text-500">
-            Lock for a {convertSeconds(parseInt(stake.timeLockUp, 10))}
-          </div>
+          <div className={s.lock}>Lock for a {convertSeconds(parseInt(pool.timeLockUp, 10))}</div>
           <div className={s.stake_card__percent_wrapper}>
-            <div className={s.percent}>{parseInt(stake.APY, 10) / 10}%</div>
+            <div className={s.percent}>{parseInt(pool.APY, 10) / 10}%</div>
             <span className={s.percent_token}>in BOT</span>
           </div>
-          <div className="text-smd text-500">Start staking</div>
-          {user.address === '' && (
+          <div className={s.start_staking}>Start staking</div>
+          {!user.address ? (
             <Button size="sm" color="white" className={s.stake_card__btn} onClick={connectToWallet}>
-              <span className="text-ssmd text-bold">Unlock Wallet</span>
+              <span>Unlock Wallet</span>
             </Button>
-          )}
-          {user.address !== '' && (
+          ) : (
             <Button
               size="sm"
               color="white"
               className={s.stake_card__btn}
               onClick={handleOpenStakeModal}
             >
-              <span className="text-ssmd text-bold">Stake</span>
+              <span>Stake</span>
             </Button>
           )}
           {!isOpenDetails && (
@@ -164,7 +167,7 @@ const PoolCard: FC<IPoolCardProps> = observer(({ stake }) => {
           </div>
         </CSSTransition>
       </div>
-      <StakeModal visible={isStakeModalVisible} onClose={handleCloseStakeModal} />
+      <StakeModal poolId={pool.id} visible={isStakeModalVisible} onClose={handleCloseStakeModal} />
     </>
   );
 });

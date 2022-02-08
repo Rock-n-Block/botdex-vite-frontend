@@ -1,7 +1,8 @@
 import { FC } from 'react';
 
-import { useMst } from '../../store';
 import { observer } from 'mobx-react-lite';
+import { useMst } from 'store';
+import { IPoolItem } from 'store/Models/Pools';
 
 import { PoolCard } from 'containers';
 
@@ -25,8 +26,8 @@ const Staking: FC = observer(() => {
         <div className={s.subtitle}>Simply stake tokens to earn. High APR, low risk.</div>
       </div>
       <div className={s.pools_wrapper}>
-        {pools.items.map((stake: any) => (
-          <PoolCard key={stake.id} stake={stake} />
+        {pools.items.map((pool: IPoolItem) => (
+          <PoolCard key={pool.id} pool={pool} />
         ))}
       </div>
     </div>

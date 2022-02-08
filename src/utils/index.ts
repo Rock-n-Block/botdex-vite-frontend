@@ -1,5 +1,6 @@
+import BigNumber from 'bignumber.js/bignumber';
+
 export { default as addressWithDots } from './addressWithDots';
-export { default as checkValueDecimals } from './checkValueDecimals';
 
 export const convertSeconds = (time: number): string => {
   let result = time / 60;
@@ -16,4 +17,12 @@ export const convertSeconds = (time: number): string => {
     return `${result} month`;
   }
   return `${result} min`;
+};
+
+export const checkValueDecimals = (value: string, decimals: string | number) => {
+  const decimalsPlaces = value.toString().split('.')[1] ? value.toString().split('.')[1].length : 0;
+  if (decimalsPlaces > +decimals) {
+    return new BigNumber(value).toFixed(18, 1);
+  }
+  return value;
 };

@@ -28,6 +28,11 @@ const Pools = types
     setPools: (items: IPoolItem[]) => {
       self.items = cast(items);
     },
+    setUserData: (items: IUserDataItem[]) => {
+      self.items.forEach((item, index) => {
+        item.userData = items[index];
+      });
+    },
     refreshData: (value: boolean) => {
       self.isRefresh = value;
     },

@@ -236,12 +236,22 @@ export class WalletService {
     return new BigNumber(amount).times(new BigNumber(10).pow(tokenDecimals)).toString(10);
   }
 
-  public async weiToEth(amount: number | string, tokenAddress?: string): Promise<string> {
+  public async weiToEth(
+    tokenContract: string,
+    amount: number | string,
+    float: number | null,
+  ): Promise<string> {
     if (amount === '0') {
       return amount;
     }
-    const tokenDecimals = tokenAddress ? await this.getTokenDecimals(tokenAddress) : 18;
-    return new BigNumber(amount).dividedBy(new BigNumber(10).pow(tokenDecimals)).toString(10);
+    const tokenDecimals = await this.getTokenDecimals(tokenContract);
+    if (float || float === 0) {
+      return new BigNumber(amount)
+        .dividedBy(new BigNumber(10).pow(tokenDecimals))
+        .toFixed(float)
+        .toString();
+    }
+    return new BigNumber(amount).dividedBy(new BigNumber(10).pow(tokenDecimals)).toString();
   }
 
   static ethToWei(amount: number | string, decimals = 18): string {
