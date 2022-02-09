@@ -1,0 +1,98 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.switch_wrapper {
+  @include flex(row, center);
+}
+.switch {
+  width: 38px;
+  min-width: unset;
+  padding: 4px 6px;
+  top: 4px;
+
+  background: transparent;
+  border: 3px solid $border-switch;
+
+  &:focus {
+    box-shadow: none;
+  }
+
+  & + * {
+    margin-left: 10px;
+  }
+
+  .ant-switch {
+    &-handle {
+      width: 21px;
+      height: 21px;
+
+      border: 0.8px solid transparent;
+      border-radius: 50%;
+
+      &::before {
+        background: $text-primary;
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  //&-default {
+  //  &.ant-switch {
+  //    &-checked {
+  //      background: $border-switch;
+  //    }
+  //
+  //    &-checked .ant-switch-handle {
+  //      left: calc(100% - 21px + 1px) !important;
+  //
+  //      border-color: $border-switch;
+  //
+  //      &::before {
+  //        background: $text-primary;
+  //      }
+  //    }
+  //  }
+  //}
+
+  &-lg {
+    width: 61px;
+    height: 35px;
+
+    .ant-switch {
+      &-handle {
+        top: 4px;
+        left: 5px;
+      }
+    }
+
+    &.ant-switch {
+      &-checked .ant-switch-handle {
+        left: calc(100% - 21px - 5px) !important;
+      }
+    }
+  }
+
+  &-sm {
+    top: 0;
+    height: 21px;
+    .ant-switch {
+      &-handle {
+        border: none !important;
+        top: -3px;
+        left: -3px;
+      }
+    }
+    &.ant-switch {
+      &-checked {
+        .ant-switch-handle {
+          left: calc(100% - 18px) !important;
+        }
+        background: $bg-switch-active;
+        background-origin: border-box;
+        border: 3px solid transparent;
+      }
+    }
+  }
+}

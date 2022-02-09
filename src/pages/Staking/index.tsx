@@ -10,14 +10,6 @@ import s from './Staking.module.scss';
 
 const Staking: FC = observer(() => {
   const { pools } = useMst();
-  // const [stakes, setStakes] = useState<any>(null);
-  //
-  // useEffect(() => {
-  //   if (user.address !== '' && stakeStore.data.length === 0) {
-  //     stakeStore.fetchStakesData();
-  //     setStakes(stakeStore.data);
-  //   }
-  // }, [user.address, stakeStore]);
 
   return (
     <div className={s.staking_wrapper}>

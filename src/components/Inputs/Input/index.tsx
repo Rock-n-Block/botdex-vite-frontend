@@ -13,6 +13,7 @@ export interface IInput {
   value?: any;
   onChange: (value: any) => void;
   onBlur?: (e: any) => void;
+  onKeyDown?: (e: any) => void;
   min?: number;
   max?: number;
   positiveOnly?: boolean;
@@ -32,6 +33,7 @@ const Input: React.FC<IInput> = React.forwardRef<HTMLInputElement, IInput>(
       value,
       onChange,
       onBlur,
+      onKeyDown,
       min,
       max,
       positiveOnly,
@@ -122,6 +124,7 @@ const Input: React.FC<IInput> = React.forwardRef<HTMLInputElement, IInput>(
         value={value}
         onChange={handleInputChange}
         onBlur={onBlur}
+        onKeyDown={onKeyDown}
         {...field}
       />
     );

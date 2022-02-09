@@ -1,75 +1,69 @@
+/* eslint-disable no-console */
 import React from 'react';
 
-import { getValueDecimals } from 'utils';
+import { contracts } from 'config';
 
 import { useWalletConnectorContext } from 'services';
-import { ISendingTokenProps, TNullable } from 'types';
+import { TNullable } from 'types';
+
+import { getValueDecimals } from '../utils';
 
 const useApprove = ({
+  tokenName,
   approvedContractName,
   amount,
   walletAddress,
-  token,
-  decimals,
 }: {
+  tokenName: string;
   approvedContractName: string;
   amount: string;
   walletAddress: TNullable<string>;
-  token: ISendingTokenProps;
-  decimals?: string;
-}): [boolean, boolean, () => Promise<any>, string] => {
+}): [boolean, boolean, () => void] => {
   const { walletService } = useWalletConnectorContext();
+
   const [isApproved, setApproved] = React.useState(false);
   const [isApproving, setApproving] = React.useState(false);
-  const [tokenDecimals, setTokenDecimals] = React.useState('');
 
-  const handleApprove = React.useCallback(async () => {
-    return new Promise((resolve, reject) => {
-      setApproving(true);
-      const valueWithDecimals = getValueDecimals(amount, decimals || tokenDecimals);
-      walletService
-        .approveToken({
-          contractName: 'STAKING',
-          approvedAddress: token.address,
-          approveAmount: +valueWithDecimals,
-        })
-        .then(() => {
-          setApproved(true);
-          resolve(true);
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.log('err approve stake', err);
-          setApproved(false);
-          reject(err);
-        })
-        .finally(() => {
-          setApproving(false);
-        });
-    });
-  }, [amount, decimals, tokenDecimals, walletService, token.address]);
+  const handleApprove = React.useCallback(() => {
+    setApproving(true);
+    const valueWithDecimals = getValueDecimals(amount, 18);
+    walletService
+      .approveToken({
+        contractName: tokenName,
+        approvedAddress: contracts.params?.[approvedContractName][contracts.type].address,
+        approveAmount: +valueWithDecimals,
+      })
+      .then(() => {
+        setApproved(true);
+      })
+      .catch((err) => {
+        console.log('err approve stake', err);
+        setApproved(false);
+      })
+      .finally(() => {
+        setApproving(false);
+      });
+  }, [amount, walletService, tokenName, approvedContractName]);
 
   React.useEffect(() => {
     if (walletAddress) {
       walletService
         .checkTokenAllowance({
-          contractName: approvedContractName,
-          approvedAddress: token.address,
+          contractName: tokenName,
+          approvedAddress: contracts.params?.[approvedContractName][contracts.type].address,
           amount,
         })
         .then((res) => {
-          setApproved(res.allowance);
-          setTokenDecimals(res.tokenDecimals);
+          setApproved(res);
         })
         .catch((err) => {
           setApproved(false);
-          // eslint-disable-next-line no-console
           console.log('check approve stake modal', err);
         });
     }
-  }, [walletService, amount, approvedContractName, walletAddress, token.address]);
+  }, [walletService, amount, approvedContractName, tokenName, walletAddress]);
 
-  return [isApproved, isApproving, handleApprove, tokenDecimals];
+  return [isApproved, isApproving, handleApprove];
 };
 
 export default useApprove;

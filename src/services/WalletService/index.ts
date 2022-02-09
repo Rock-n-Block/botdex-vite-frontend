@@ -163,38 +163,35 @@ export class WalletService {
     amount,
   }: {
     contractName: string;
-    approvedAddress: string;
+    approvedAddress?: string;
     walletAddress?: string;
     amount?: string | number;
-  }): Promise<{ allowance: boolean; tokenDecimals: string }> {
+  }): Promise<boolean> {
     try {
       const contract = this.connectWallet.getContract({
-        address: approvedAddress,
-        // contracts.params[contractName][this.currentChain][contracts.type].address,
-        abi: erc20Abi as any,
+        address: contracts.params[contractName][contracts.type].address,
+        abi: contracts.params[contractName][contracts.type].abi,
       });
       const walletAdr = walletAddress || this.walletAddress;
 
       let result = await contract.methods
         .allowance(
           walletAdr,
-          // approvedAddress,
-          contracts.params[contractName][contracts.type].address,
+          approvedAddress || contracts.params[contractName][contracts.type].address,
         )
         .call();
 
-      const tokenDecimals = await this.getTokenDecimals(approvedAddress);
+      const tokenDecimals = await this.getTokenDecimals(
+        contracts.params[contractName][contracts.type].address,
+      );
 
       result =
         result === '0'
           ? null
           : +new BigNumber(result).dividedBy(new BigNumber(10).pow(tokenDecimals)).toString(10);
-      if (result && new BigNumber(result).minus(amount || 0).isPositive()) {
-        return { allowance: true, tokenDecimals };
-      }
-      return { allowance: false, tokenDecimals };
+      return !!(result && new BigNumber(result).minus(amount || 0).isPositive());
     } catch (error) {
-      return { allowance: false, tokenDecimals: '' };
+      return false;
     }
   }
 

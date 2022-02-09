@@ -158,32 +158,24 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
 
 :global(.show_details-enter) {
   margin-top: 0;
-
   max-height: 0;
-
   opacity: 0;
 }
 
 :global(.show_details-enter-active) {
   max-height: 3500px;
-
   opacity: 1;
-
-  transition: max-height 300ms, opacity 100ms;
+  transition: max-height 300ms, opacity 300ms;
 }
 
 :global(.show_details-exit) {
   max-height: 3500px;
-
   opacity: 1;
 }
 
 :global(.show_details-exit-active) {
   margin-top: 0;
-
   max-height: 0;
-
   opacity: 0;
-
-  transition: max-height 300ms, opacity 100ms;
+  transition: max-height 200ms, opacity 200ms;
 }

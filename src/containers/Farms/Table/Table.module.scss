@@ -1,0 +1,29 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.farms_table {
+  overflow: visible;
+  padding: 34px 0;
+  border-radius: 12px;
+  background: $bg-container;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+
+  @include b(tablet) {
+    margin-top: 30px;
+    padding: 0;
+    border-radius: 0 !important;
+  }
+
+  &__head {
+    position: sticky;
+    margin: 0 30px;
+    padding-bottom: 13px;
+    display: grid;
+    align-items: center;
+    grid-template-columns: $columns;
+    grid-column-gap: 20px;
+    @include b(tablet) {
+      display: none;
+    }
+  }
+}

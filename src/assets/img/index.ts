@@ -38,3 +38,8 @@ export { ReactComponent as Github } from './icons/github.svg';
 export { ReactComponent as Bsc } from './icons/bsc.svg';
 
 export { default as Error } from './icons/error.svg';
+export { default as InfoImg } from './icons/i.svg';
+export { default as NoLogoToken } from './icons/empty_token.png';
+export { default as CalcImg } from './icons/calc.svg';
+export { default as ExternalLinkImg } from './icons/ex_link.svg';
+export { default as VerifiedImg } from './icons/check.svg';

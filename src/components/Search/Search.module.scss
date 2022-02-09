@@ -1,0 +1,47 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.input {
+  margin-left: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  max-width: 190px;
+  width: 100%;
+  @include flex(row, center, flex-start, nowrap);
+  border: none;
+  padding: 14px 14px 15px 14px;
+
+  &_img {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    width: 21px;
+    height: 21px;
+    margin-right: 10px;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 21px;
+      height: 21px;
+      background-image: url('../../assets/img/icons/magnifier.svg');
+    }
+  }
+  &__item {
+    transition: all 0.2s ease-out;
+    border-radius: 0;
+    box-shadow: none;
+
+    border: none;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 20px;
+    background-color: transparent;
+    letter-spacing: 0.035em;
+    outline: none;
+    width: 100%;
+    color: $text-primary;
+    &::placeholder {
+      color: $text-primary;
+    }
+  }
+}

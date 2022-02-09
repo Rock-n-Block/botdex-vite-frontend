@@ -1,0 +1,62 @@
+@import 'src/styles/variables';
+
+.s-sort {
+  min-width: 185px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: $text-primary;
+  border-radius: 12px;
+
+  .ant-select-selector {
+    padding: 10px 15px !important;
+
+    overflow: hidden;
+
+    height: auto !important;
+
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .ant-select-selection-item {
+    // padding-right: 47px !important;
+    padding-right: 0 !important;
+  }
+
+  .ant-select-arrow {
+    top: 50%;
+    right: 16px;
+  }
+}
+
+.ant-select-dropdown {
+  padding: 0 !important;
+
+  overflow: hidden;
+
+  background: $bg-switch !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 12px !important;
+}
+
+.ant-select-item {
+  padding: 10px;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+
+  color: $text-primary !important;
+
+  &-option {
+    transition: 0s;
+
+    &-active {
+      color: #fff;
+      background: $bg-accent !important;
+    }
+  }
+}

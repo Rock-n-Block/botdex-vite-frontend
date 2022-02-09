@@ -2,5 +2,31 @@
 @import 'src/styles/mixins';
 
 .farms_wrapper {
+  width: 100%;
+  padding: 23px 0 0;
 
+  .farms_preview {
+    padding: 41px 42px 39px;
+    background: url('src/assets/img/farms_preview.png');
+    background-size: cover;
+    border-radius: 12px;
+    @include b(mobile) {
+      background: url('src/assets/img/farms_preview_sm.png');
+      background-size: cover;
+    }
+
+    .title {
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 75px;
+
+      @include b(mobile) {
+        font-size: 40px;
+        line-height: 50px;
+      }
+    }
+    .subtitle {
+      margin-top: 12px;
+    }
+  }
 }

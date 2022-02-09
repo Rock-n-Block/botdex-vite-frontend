@@ -1,0 +1,57 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.filter_wrapper {
+  width: 100%;
+  @include flex(row, center, flex-start);
+  margin: 30px 0 32px;
+  @include b(tablet) {
+    @include flex(column, flex-start);
+  }
+
+  .switch_wrapper {
+    margin-right: 30px;
+    @include b(tablet) {
+      margin-bottom: 30px;
+    }
+    .switch_text {
+      font-weight: 700;
+    }
+  }
+
+  .radio_wrapper {
+    @include b(tablet) {
+      margin-bottom: 19px;
+      width: 100%;
+    }
+
+    .radio {
+      @include b(tablet) {
+        width: 100%;
+        @include flex(row);
+        * {
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+
+  .sort_wrapper {
+    @include flex(row, center);
+    margin-left: auto;
+    @include b(tablet) {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    .sort {
+      @include b(tablet) {
+        width: 40%;
+      }
+    }
+    .search {
+      width: calc(60% - 20px);
+      max-width: none;
+    }
+  }
+}

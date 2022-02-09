@@ -16,18 +16,30 @@ $line-height-default: 20px;
 
 $bg-primary: linear-gradient(0deg, #110847, #110847);
 $bg-secondary: #1d1135;
+$bg-accent: #c630f6;
 $bg-white: #fff;
 $bg-footer: #060028;
 $bg-divider: #685096;
 $bg-purple: #7649fe;
-$bg-modal: linear-gradient(0deg, #1d125b, #1d125b);
+$bg-container: linear-gradient(0deg, #1d125b, #1d125b);
 $bg-slider-track: rgba(255, 255, 255, 0.2);
 $bg-slider-handle: linear-gradient(0deg, #c630f6, #c630f6);
+$bg-switch-active: linear-gradient(0deg, #c630f6, #c630f6);
+$bg-radio: linear-gradient(180deg, #2e1d8f 0%, #1f1080 100%);
+$bg-radio-btn: #170f39;
+$bg-switch: #2f2542;
+$bg-table-divider: #b8b8b8;
+$bg-farm-details: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1));
 
 $bg-sidebar: linear-gradient(159.02deg, #300a36 20.74%, #1c0fc6 77.56%, #0511ec 98.67%);
 $bg-menu-link: #0a42ea;
 $text-primary: #f4f4f4;
 
 $border-input: 3px solid rgba(255, 255, 255, 0.2);
+$border-switch: #7649fe;
 
 $error: #df2935;
+
+$columns: minmax(120px, 1.5fr) minmax(100px, 0.5fr) minmax(110px, 0.5fr) minmax(110px, 1.5fr)
+  minmax(50px, 0.5fr) minmax(50px, 1fr);
+$columns-tablet: 1fr 1fr 1fr 0.1fr;
