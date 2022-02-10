@@ -1,14 +1,17 @@
 import { FC, useCallback, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 
+import { useMst } from '../../../store';
 import { observer } from 'mobx-react-lite';
 
 import cn from 'classnames';
 
 import { Button } from '../../../components';
 
-import { ArrowImg, CalcImg, ExternalLinkImg, InfoImg, NoLogoToken, VerifiedImg } from 'assets/img';
+import FarmLinks from './FarmLinks';
+import FarmPopover from './FarmPopover';
+
+import { ArrowImg, CalcImg, NoLogoToken } from 'assets/img';
 
 // import { FarmWithStakedValue } from 'types';
 import s from './TableRow.module.scss';
@@ -16,8 +19,21 @@ import s from './TableRow.module.scss';
 // interface ITableRowProps {
 //   farm: FarmWithStakedValue;
 // }
+const multiplierPopoverText = (
+  <>
+    <p>
+      The Multiplier represents the proportion of BOT rewards each farm receives, as a proportion of
+      the BOT produced each block.
+    </p>
+    <p>
+      For example, if a 1x farm received 1 BOT per block, a 40x farm would receive 40 BOT per block.
+    </p>
+    <p> This amount is already included in all APR calculations for the farm.</p>
+  </>
+);
 
 const TableRow: FC = observer(() => {
+  const { user } = useMst();
   const [isOpenDetails, setOpenDetails] = useState<boolean>(false);
   const handleToggleDetailsClick = useCallback(() => {
     setOpenDetails(!isOpenDetails);
@@ -55,12 +71,12 @@ const TableRow: FC = observer(() => {
 
         <div className={s.liquidity}>
           <span className={s.value}>$0</span>
-          <img src={InfoImg} alt="calc" />
+          <FarmPopover text="Total value of the funds in this farm’s liquidity pool" />
         </div>
 
         <div className={s.multiplier}>
           <span className={s.value}>10X</span>
-          <img src={InfoImg} alt="calc" />
+          <FarmPopover text={multiplierPopoverText} />
         </div>
 
         <div className={cn(s.arrow_dropdown_mob, isOpenDetails && s.active)}>
@@ -68,7 +84,7 @@ const TableRow: FC = observer(() => {
         </div>
         <Button
           size="sm"
-          color="outline"
+          color={isOpenDetails ? 'pink' : 'outline'}
           className={s.details_btn}
           onClick={handleToggleDetailsClick}
         >
@@ -89,34 +105,35 @@ const TableRow: FC = observer(() => {
         classNames="show_farm_details"
       >
         <div className={s.farm_details}>
-          <div className={s.links_wrapper}>
-            <Link to="/trade/liquidity/add" target="_blank" rel="noreferrer" className={s.link}>
-              <span>Get DAI-WBNB LP</span>
-              <img src={ExternalLinkImg} alt="link" />
-            </Link>
-            <a
-              href="https://testnet.bscscan.com//address/0x92e999CCB3A368678422e5814ABdD177700ccf93"
-              target="_blank"
-              rel="noreferrer"
-              className={s.link}
-            >
-              <span>View Contract</span>
-              <img src={ExternalLinkImg} alt="link" />
-            </a>
-            <a
-              href="https://testnet.bscscan.com//address/0x92e999CCB3A368678422e5814ABdD177700ccf93"
-              target="_blank"
-              rel="noreferrer"
-              className={s.link}
-            >
-              <span>See Pair Info</span>
-              <img src={ExternalLinkImg} alt="link" />
-            </a>
-            <div className={s.badge}>
-              <span className={s.badge_wrapper}>
-                <img src={VerifiedImg} alt="verified core farm" />
-                <span className={s.core}>Core</span>
-              </span>
+          <FarmLinks />
+          <div className={s.actions}>
+            <div className={cn(s.earned_wrapper, s.container)}>
+              <div className={s.title}>BOT Earned</div>
+              <div className={s.harvest_container}>
+                <div className={s.earned}>0.0</div>
+                <Button
+                  size="sm"
+                  color="outline"
+                  className={s.harvest_btn}
+                  onClick={() => {}}
+                  disabled
+                >
+                  <span>Harvest</span>
+                </Button>
+              </div>
+            </div>
+
+            <div className={cn(s.actions_wrapper, s.container)}>
+              <div className={s.title}>Start Farming</div>
+              {user.address ? (
+                <Button color="pink" isFullWidth onClick={() => {}}>
+                  Stake LP
+                </Button>
+              ) : (
+                <Button color="pink" onClick={() => {}}>
+                  Unlock wallet
+                </Button>
+              )}
             </div>
           </div>
         </div>

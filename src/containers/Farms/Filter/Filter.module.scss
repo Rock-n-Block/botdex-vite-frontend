@@ -42,6 +42,7 @@
     @include b(tablet) {
       margin-left: 0;
       width: 100%;
+      flex-wrap: nowrap;
     }
 
     .sort {

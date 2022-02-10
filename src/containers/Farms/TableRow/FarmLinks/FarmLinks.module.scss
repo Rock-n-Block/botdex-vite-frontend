@@ -1,0 +1,30 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.links_wrapper {
+  @include flex(column, flex-start);
+  gap: 16px;
+
+  .link {
+    @include flex(row, center);
+    gap: 7px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+  .badge {
+    .badge_wrapper {
+      border: 1px solid $bg-white;
+      border-radius: 12px;
+      @include flex(row, center, space-between);
+      padding: 2px 6px;
+    }
+    img {
+      margin-right: 2px;
+    }
+    .core {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 26px;
+    }
+  }
+}

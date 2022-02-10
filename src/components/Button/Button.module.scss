@@ -73,10 +73,14 @@ $text-default: white;
     &:hover,
     &:focus {
     }
+    &.disabled {
+      border: none;
+    }
   }
 
   &.disabled {
     background: rgba(197, 196, 195, 0.5);
+    cursor: not-allowed;
 
     &:hover,
     &:focus {
@@ -84,6 +88,7 @@ $text-default: white;
   }
 
   &.sm {
+    padding: 6px 10px;
   }
 
   &.md {

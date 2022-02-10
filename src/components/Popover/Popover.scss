@@ -1,0 +1,21 @@
+@import 'src/styles/variables';
+
+.ant-popover-inner-content {
+  padding: 20px;
+}
+
+.ant-popover {
+  max-width: 500px;
+
+  &-arrow {
+    &-content {
+      background: $bg-radio !important;
+    }
+  }
+  &-inner {
+    background: $bg-radio !important;
+    &-content {
+      color: $text-primary !important;
+    }
+  }
+}
