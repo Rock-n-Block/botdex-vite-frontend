@@ -44,7 +44,7 @@ const InputWrapper: React.FC<IInputWrapper> = ({
   return (
     <div className={cn(style.wrapper, className)}>
       {title ? <div className={style.title}>{title}</div> : null}
-      <div className={cn(style.content, style[`content_${color}`])}>
+      <div className={cn(style.content, style[`content_${color}`], prefix && style.is_prefix)}>
         {prefix ? (
           <div
             className={style.prefix}

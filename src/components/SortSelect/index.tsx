@@ -4,7 +4,7 @@ import { Select as AntdSelect } from 'antd';
 import { SelectProps, SelectValue } from 'antd/lib/select';
 import cn from 'classnames';
 
-import { ReactComponent as ArrowImg } from 'assets/img/icons/arrow-btn.svg';
+import { ReactComponent as ArrowImg } from 'assets/img/icons/arrow-dropdown.svg';
 
 import 'antd/dist/antd.css';
 import './SortSelect.scss';

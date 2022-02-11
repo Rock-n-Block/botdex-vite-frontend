@@ -1,4 +1,5 @@
 import { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { useMst } from '../../../store';
 import { observer } from 'mobx-react-lite';
@@ -98,12 +99,17 @@ const StakeModal: FC<IStakeModalProps> = observer(({ poolId, visible, onClose })
           data: [poolId, trxAmount],
           contract: 'STAKING',
         });
+        toast.error(`Staked! Your funds have been staked in the farm!`);
         setLoading(false);
         setAmount('0');
         onClose();
         pools.refreshData(true);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
+        toast.error(
+          `Error! Please try again. Confirm the transaction and make sure you are paying enough gas!`,
+        );
         setLoading(false);
       }
     }
@@ -126,6 +132,7 @@ const StakeModal: FC<IStakeModalProps> = observer(({ poolId, visible, onClose })
         );
         setBalance(userBalanceConvert);
       } catch (err) {
+        // eslint-disable-next-line no-console
         console.log(err);
       }
     }

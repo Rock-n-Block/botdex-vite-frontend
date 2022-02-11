@@ -1,0 +1,55 @@
+@import 'src/styles/variables';
+@import 'src/styles/mixins';
+
+.roi_modal {
+  &_content {
+    margin: 10px 0;
+  }
+  .title {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .lp_input {
+    &_postfix {
+      position: absolute;
+      right: 20px;
+      top: 17px;
+      padding: 15px 10px;
+    }
+  }
+  .amounts_wrapper {
+    margin: 10px 0 15px;
+    @include flex(row, center, space-between);
+    * {
+      width: calc((100% - 20px) / 3);
+    }
+  }
+  .stake_time {
+    width: 100%;
+    margin-bottom: 10px;
+    * {
+      width: calc((100% - 30px) / 5);
+    }
+  }
+  .compounding_wrapper {
+    @include flex(row, center);
+
+    .compounding {
+      margin-left: 10px;
+      flex-grow: 1;
+      * {
+        width: calc((100% - 24px) / 4);
+      }
+    }
+  }
+  .arrow_wrapper {
+    margin: 20px 0;
+    @include flex(row, center, center);
+    img {
+      width: 24px;
+    }
+  }
+}

@@ -152,3 +152,9 @@ button {
     @include flex(row, center, center);
   }
 }
+.Toastify__toast-theme--dark {
+  background: $bg-container;
+  color: $text-primary;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}

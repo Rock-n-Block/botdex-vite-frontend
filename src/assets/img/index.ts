@@ -22,6 +22,7 @@ export { ReactComponent as LogoTextFooter } from './icons/logo_text_footer.svg';
 export { ReactComponent as LogoTextFooterSm } from './icons/logo_text_footer_sm.svg';
 
 export { default as ArrowImg } from './icons/arrow-dropdown.svg';
+export { default as ArrowLgImg } from './icons/arrow_lg.svg';
 
 export { ReactComponent as WalletImg } from './icons/wallet.svg';
 

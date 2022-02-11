@@ -74,6 +74,10 @@
         width: 100%;
         padding-left: 20px;
         height: 44px;
+        margin-bottom: 12px;
+        &:last-child {
+          margin-bottom: 0;
+        }
         @include flex(row, center, flex-start);
         @include b(tablet) {
           padding-left: 5px;

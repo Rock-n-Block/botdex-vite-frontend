@@ -1,15 +1,18 @@
 import { FC, useCallback, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { useMst } from '../../../store';
 import { observer } from 'mobx-react-lite';
+import { useMst } from 'store';
 
 import cn from 'classnames';
 
-import { Button } from '../../../components';
+import { Button } from 'components';
+
+import { useModal } from 'hooks';
 
 import FarmLinks from './FarmLinks';
 import FarmPopover from './FarmPopover';
+import RoiModal from './RoiModal';
 
 import { ArrowImg, CalcImg, NoLogoToken } from 'assets/img';
 
@@ -34,6 +37,7 @@ const multiplierPopoverText = (
 
 const TableRow: FC = observer(() => {
   const { user } = useMst();
+  const [isRoiModalVisible, handleOpenRoiModal, handleCloseRoiModal] = useModal(false);
   const [isOpenDetails, setOpenDetails] = useState<boolean>(false);
   const handleToggleDetailsClick = useCallback(() => {
     setOpenDetails(!isOpenDetails);
@@ -60,7 +64,7 @@ const TableRow: FC = observer(() => {
           <span className={s.value}>{Number(0).toFixed(2).replace('.', ',')}%</span>
           <div
             className={s.apr_btn}
-            onClick={() => {}}
+            onClick={handleOpenRoiModal}
             onKeyDown={() => {}}
             role="button"
             tabIndex={0}
@@ -138,6 +142,7 @@ const TableRow: FC = observer(() => {
           </div>
         </div>
       </CSSTransition>
+      <RoiModal visible={isRoiModalVisible} onClose={handleCloseRoiModal} />
     </div>
   );
 });

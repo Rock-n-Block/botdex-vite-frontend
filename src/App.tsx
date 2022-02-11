@@ -1,6 +1,9 @@
 import { FC } from 'react';
+import { ToastContainer } from 'react-toastify';
 
 import { Footer, Header, RouterManager, Sidebar } from 'containers';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const App: FC = () => {
   return (
@@ -16,6 +19,7 @@ const App: FC = () => {
         </div>
       </div>
       <Footer />
+      <ToastContainer position="bottom-right" theme="dark" hideProgressBar />
     </>
   );
 };
