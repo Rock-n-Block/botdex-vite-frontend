@@ -90,6 +90,10 @@ export class WalletService {
   > {
     return this.connectWallet.getAccounts();
   }
+  //
+  // public async multicall(): Promise<any> {
+  //
+  // }
 
   static getMethodInterface(abi: Array<any>, methodName: string) {
     return abi.filter((m) => {

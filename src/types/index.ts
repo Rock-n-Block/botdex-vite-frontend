@@ -12,14 +12,9 @@ export interface IModalProps {
   title?: string;
 }
 
-export interface Address extends Record<string, string> {
-  // [key: string]: string;
-  '97': string;
-}
-
 export interface Token {
   symbol: string;
-  address: Address;
+  address: string;
   decimals?: number;
   projectLink?: string;
   logoURI?: string;
@@ -33,9 +28,9 @@ export type IDetailsBadgeType = keyof typeof DetailsBadgeType;
 export type SerializedBigNumber = string;
 
 export interface FarmConfig {
-  pid: number;
+  id: number;
   lpSymbol: string;
-  lpAddresses: Address;
+  lpAddresses: string;
   token: Token;
   quoteToken: Token;
   multiplier?: string;

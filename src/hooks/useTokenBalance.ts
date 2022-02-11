@@ -19,7 +19,7 @@ export default (
       method = 'getBalance';
     }
     const tokenBalance = await walletService[method](tokenAddress || '');
-    const amount = await walletService.weiToEth(tokenBalance, tokenAddress);
+    const amount = await walletService.weiToEth(tokenBalance, tokenAddress, 0);
 
     setBalance(amount);
   }, [tokenAddress, walletService]);

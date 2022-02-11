@@ -8,6 +8,8 @@ import cn from 'classnames';
 
 import { Button } from 'components';
 
+import { useWalletConnectorContext } from '../../../services';
+import { chainsEnum } from '../../../types';
 import { useModal } from 'hooks';
 
 import FarmLinks from './FarmLinks';
@@ -37,11 +39,16 @@ const multiplierPopoverText = (
 
 const TableRow: FC = observer(() => {
   const { user } = useMst();
+  const { connect } = useWalletConnectorContext();
   const [isRoiModalVisible, handleOpenRoiModal, handleCloseRoiModal] = useModal(false);
   const [isOpenDetails, setOpenDetails] = useState<boolean>(false);
   const handleToggleDetailsClick = useCallback(() => {
     setOpenDetails(!isOpenDetails);
   }, [isOpenDetails]);
+
+  const connectToWallet = useCallback(() => {
+    connect(chainsEnum['Binance-Smart-Chain'], 'MetaMask').catch(() => {});
+  }, [connect]);
 
   return (
     <div className={s.farms_table_row}>
@@ -134,7 +141,7 @@ const TableRow: FC = observer(() => {
                   Stake LP
                 </Button>
               ) : (
-                <Button color="pink" onClick={() => {}}>
+                <Button color="pink" onClick={connectToWallet}>
                   Unlock wallet
                 </Button>
               )}

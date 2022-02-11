@@ -2,16 +2,101 @@ import { FC, useCallback, useEffect } from 'react';
 
 import { observer } from 'mobx-react-lite';
 import { useMst } from 'store';
-import { IPoolItem, IUserDataItem } from 'store/Models/Pools';
+// import { IFarmItem } from 'store/Models/Farms';
+import { IPoolItem, IUserDataItem as PoolsUserData } from 'store/Models/Pools';
 
 import { contracts } from 'config';
+import { farms as farmsConfig } from 'config/farms';
 
+import { FarmConfig } from '../../types';
 import { useWalletConnectorContext } from 'services';
 
 const GetData: FC = ({ children }) => {
   const { walletService } = useWalletConnectorContext();
-  const { user, pools } = useMst();
+  const { farms, user, pools } = useMst();
 
+  // GET FARMS DATA
+  const getFarms = useCallback(async () => {
+    try {
+      const promises: Promise<FarmConfig>[] = farmsConfig.map(async (farm) => {
+        const { lpAddresses, token, quoteToken } = farm;
+        const calls = [
+          // Balance of token in the LP contract
+          {
+            address: token.address,
+            name: 'balanceOf',
+            params: [lpAddresses],
+          },
+          // Balance of quote token on LP contract
+          {
+            address: quoteToken.address,
+            name: 'balanceOf',
+            params: [lpAddresses],
+          },
+          // Balance of LP tokens in the master chef contract
+          {
+            address: lpAddresses,
+            name: 'balanceOf',
+            params: [contracts.params.FARMS[contracts.type].address],
+          },
+          // Total supply of LP tokens
+          {
+            address: lpAddresses,
+            name: 'totalSupply',
+          },
+          // Token decimals
+          {
+            address: token.address,
+            name: 'decimals',
+          },
+          // Quote token decimals
+          {
+            address: quoteToken.address,
+            name: 'decimals',
+          },
+        ];
+        console.log(calls);
+
+        // const [
+        //   tokenBalanceLP,
+        //   quoteTokenBalanceLP,
+        //   lpTokenBalanceMC,
+        //   lpTotalSupply,
+        //   tokenDecimals,
+        //   quoteTokenDecimals,
+        // ] = await multicall(contracts.params.ERC20[contracts.type].abi, calls);
+        // console.log({
+        //   tokenBalanceLP,
+        //   quoteTokenBalanceLP,
+        //   lpTokenBalanceMC,
+        //   lpTotalSupply,
+        //   tokenDecimals,
+        //   quoteTokenDecimals,
+        // });
+        return farm;
+      });
+
+      console.log(promises);
+      // Promise.all(promises).then((res) => {
+      //   const farmsFinal = res.map(
+      //     (item: IFarmItem) =>
+      //       ({
+      //         id: item.id,
+      //       } as IFarmItem),
+      //   );
+      //   farms.setFarms(farmsFinal);
+      // });
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log('err get farms', err);
+    }
+  }, []);
+
+  const getFarmsData = useCallback(async () => {
+    await getFarms();
+  }, [getFarms]);
+
+  // GET POOLS DATA
   const getPools = useCallback(async () => {
     try {
       const poolsCount = await walletService.callContractMethod({
@@ -49,6 +134,7 @@ const GetData: FC = ({ children }) => {
         pools.setPools(poolsFinal);
       });
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log('err get pools', err);
     }
   }, [walletService, pools]);
@@ -63,7 +149,7 @@ const GetData: FC = ({ children }) => {
           contractAbi: contracts.params.STAKING[contracts.type].abi,
         });
 
-        const userDataPromises: Array<Promise<IUserDataItem>> = new Array(+poolsCount)
+        const userDataPromises: Array<Promise<PoolsUserData>> = new Array(+poolsCount)
           .fill(0)
           .map((index) =>
             walletService.callContractMethod({
@@ -74,14 +160,14 @@ const GetData: FC = ({ children }) => {
               data: [user.address, index],
             }),
           );
-        // const userData: IUserDataItem[] = await Promise.all(userDataPromises);
+
         Promise.all(userDataPromises).then((res) => {
           const userData = res.map(
-            (item: IUserDataItem) =>
+            (item: PoolsUserData) =>
               ({
                 amount: item.amount,
                 start: item.start,
-              } as IUserDataItem),
+              } as PoolsUserData),
           );
           pools.setUserData(userData);
         });
@@ -91,22 +177,34 @@ const GetData: FC = ({ children }) => {
     }
   }, [pools, user.address, walletService]);
 
-  const getPoolData = useCallback(async () => {
+  const getPoolsData = useCallback(async () => {
     await getPools();
     await getPoolsUserData();
   }, [getPools, getPoolsUserData]);
 
   useEffect(() => {
-    getPoolData().then();
-  }, [getPoolData]);
+    getFarmsData().then();
+  }, [getFarmsData]);
+
+  useEffect(() => {
+    if (farms.isRefresh) {
+      getFarmsData().then(() => {
+        farms.refreshData(false);
+      });
+    }
+  }, [farms, getFarmsData]);
+
+  useEffect(() => {
+    getPoolsData().then();
+  }, [getPoolsData]);
 
   useEffect(() => {
     if (pools.isRefresh) {
-      getPoolData().then(() => {
+      getPoolsData().then(() => {
         pools.refreshData(false);
       });
     }
-  }, [getPoolData, pools.isRefresh, pools]);
+  }, [getPoolsData, pools.isRefresh, pools]);
 
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{children}</>;

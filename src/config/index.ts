@@ -2,7 +2,7 @@ import { INetwork } from '@amfi/connect-wallet/dist/interface';
 
 import { chainsEnum, IConnectWallet, IContracts } from 'types';
 
-import { botAbi, stakingAbi } from './abi';
+import { botAbi, factoryAbi, farmsAbi, multicallAbi, pairAbi, routerAbi, stakingAbi } from './abi';
 
 export const is_production = false;
 
@@ -51,8 +51,48 @@ export const connectWallet = (chainName: chainsEnum): IConnectWallet => {
 
 export const contracts: IContracts = {
   type: is_production ? 'mainnet' : 'testnet',
-  names: ['BOT', 'STAKING'],
+  names: ['ROUTER', 'FACTORY', 'PAIR', 'MULTICALL', 'BOT', 'STAKING', 'FARMS'],
   params: {
+    ROUTER: {
+      mainnet: {
+        address: '',
+        abi: [],
+      },
+      testnet: {
+        address: '0xb05241134B0974bE957fc56efD6b51dFFb3E74db',
+        abi: routerAbi,
+      },
+    },
+    FACTORY: {
+      mainnet: {
+        address: '',
+        abi: [],
+      },
+      testnet: {
+        address: '0x219864AC21AFe9B03386B172cc58334d949cDC88',
+        abi: factoryAbi,
+      },
+    },
+    PAIR: {
+      mainnet: {
+        address: '',
+        abi: [],
+      },
+      testnet: {
+        address: '0x92e999CCB3A368678422e5814ABdD177700ccf93',
+        abi: pairAbi,
+      },
+    },
+    MULTICALL: {
+      mainnet: {
+        address: '',
+        abi: [],
+      },
+      testnet: {
+        address: '0xf00c47F7FfECAe59E98261A757f6d8Bdf19AE928',
+        abi: multicallAbi,
+      },
+    },
     BOT: {
       mainnet: {
         address: '',
@@ -71,6 +111,16 @@ export const contracts: IContracts = {
       testnet: {
         address: '0xbafB6B6F7b96e4fc6517D8687181340Bd62e5e55',
         abi: stakingAbi,
+      },
+    },
+    FARMS: {
+      mainnet: {
+        address: '',
+        abi: [],
+      },
+      testnet: {
+        address: '0x61Ea91A4Fe616661bbd949A525e95204eDd99765',
+        abi: farmsAbi,
       },
     },
   },

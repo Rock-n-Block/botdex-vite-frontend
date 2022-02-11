@@ -3,12 +3,13 @@ import { createContext, useContext } from 'react';
 import makeInspectable from 'mobx-devtools-mst';
 import { Instance, onSnapshot, types } from 'mobx-state-tree';
 
-import { Pools, SidebarModel, UserModel } from './Models';
+import { Farms, Pools, SidebarModel, UserModel } from './Models';
 
 const RootModel = types.model('RootModel', {
   user: UserModel,
   sidebar: SidebarModel,
   pools: Pools,
+  farms: Farms,
 });
 
 export const rootStore = RootModel.create({
@@ -19,6 +20,10 @@ export const rootStore = RootModel.create({
     isOpen: window.innerWidth >= 1024,
   },
   pools: {
+    items: [],
+    isRefresh: false,
+  },
+  farms: {
     items: [],
     isRefresh: false,
   },
