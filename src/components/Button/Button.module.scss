@@ -12,75 +12,92 @@ $text-default: white;
   text-decoration: none;
 
   cursor: pointer;
+
   background: transparent;
   border: none;
   @include flex(row, center, center, nowrap);
 
   &.blue {
-    background: $bg-blue;
-    box-shadow: 0 5px 0 $shadow-blue;
-    border-radius: 11px;
     padding: 6px;
-    font-weight: 700;
+
     font-size: 14px;
+    font-weight: 700;
     line-height: 26px;
+
     color: $text-default;
+    background: $bg-blue;
+    border-radius: 11px;
+    box-shadow: 0 5px 0 $shadow-blue;
+
     svg {
       margin-right: 10px;
     }
   }
 
   &.pink {
-    background: #c630f6;
-    box-shadow: 0 5px 0 #6e1989;
-    border-radius: 11px;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 26px;
     padding: 20px;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+
     color: $text-default;
+    background: #c630f6;
+    border-radius: 11px;
+    box-shadow: 0 5px 0 #6e1989;
   }
 
   &.white {
-    background: #f4f4f4;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
     padding: 10px 20px;
+
     font-size: 16px;
-    line-height: 26px;
     font-weight: 700;
-    color: linear-gradient(98.94deg, #1d125b -22.87%, #090413 94.67%);
-  }
-  &.gray {
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2));
-    border-radius: 12px;
-    padding: 6px 18px;
-    font-weight: 500;
-    font-size: 16px;
     line-height: 26px;
+
+    color: linear-gradient(98.94deg, #1d125b -22.87%, #090413 94.67%);
+    background: #f4f4f4;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px rgb(0 0 0 / 10%);
+  }
+
+  &.gray {
+    padding: 6px 18px;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+
     color: $text-default;
+    background: linear-gradient(0deg, rgb(255 255 255 / 20%), rgb(255 255 255 / 20%));
+    border-radius: 12px;
   }
 
   &.outline {
-    border: 1px solid #f4f4f4;
-    box-sizing: border-box;
-    border-radius: 12px;
-    color: $text-default;
     padding: 6px 10px;
-    font-weight: 500;
+
+    box-sizing: border-box;
+
     font-size: 16px;
+    font-weight: 500;
     line-height: 26px;
+
+    color: $text-default;
+    border: 1px solid #f4f4f4;
+    border-radius: 12px;
+
     &:hover,
     &:focus {
     }
+
     &.disabled {
       border: none;
     }
   }
 
   &.disabled {
-    background: rgba(197, 196, 195, 0.5);
     cursor: not-allowed;
+
+    background: rgb(197 196 195 / 50%);
 
     &:hover,
     &:focus {

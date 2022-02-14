@@ -5,24 +5,30 @@
   &_content {
     margin-top: 59px;
   }
+
   &_header {
     @include flex(row, center, space-between);
   }
+
   .input_wrapper {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+
   .balance {
     @include flex(row, center, flex-end);
     margin-bottom: 25px;
   }
+
   .slider_wrapper {
     margin-bottom: 30px;
   }
+
   .percent_btns_wrapper {
     @include flex(row, center, space-between, nowrap);
     margin-bottom: 30px;
   }
+
   .btn_get_bot {
     margin-top: 18px;
   }

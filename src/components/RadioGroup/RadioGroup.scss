@@ -2,24 +2,29 @@
 
 .r-group {
   padding: 6px 6px 8px 0;
+
   overflow: hidden;
+
   background: $bg-radio;
   border-radius: 12px;
 
   &__btn {
+    margin-left: 6px;
     padding: 13px 13px 11px;
+
     height: auto;
+
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
     text-align: center;
 
-    background: $bg-radio-btn;
-    box-shadow: 0 5px 0 $bg-radio-btn;
-    border-radius: 10px;
     color: $text-primary;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
+
+    background: $bg-radio-btn;
     border: none;
-    margin-left: 6px;
+    border-radius: 10px;
+    box-shadow: 0 5px 0 $bg-radio-btn;
 
     &:first-child,
     &:last-child {
@@ -34,6 +39,7 @@
     &:hover {
       color: $text-primary;
     }
+
     &:focus {
       border: none !important;
     }
@@ -45,19 +51,22 @@
 
   .ant-radio-button {
     border: none !important;
+
     input {
       &:focus {
         border: none !important;
       }
     }
   }
+
   .ant-radio-button-checked {
     border: none !important;
   }
+
   .ant-radio-button-wrapper-checked {
     background: $bg-accent !important;
-    box-shadow: 0 5px 0 #6e1989;
-    border-radius: 10px;
     border: none !important;
+    border-radius: 10px;
+    box-shadow: 0 5px 0 #6e1989;
   }
 }

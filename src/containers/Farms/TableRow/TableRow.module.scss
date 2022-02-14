@@ -6,14 +6,19 @@
 
   &::after {
     content: '';
+
     position: absolute;
     top: 0;
     left: 50%;
+
     display: block;
+
     width: calc(100% - 100px);
     height: 1px;
+
     background: $bg-table-divider;
     opacity: 0.3;
+
     transform: translateX(-50%);
 
     @include b(tablet) {
@@ -23,8 +28,10 @@
 
   .content {
     padding: 35px 30px;
+
     display: grid;
     align-items: center;
+
     cursor: pointer;
     grid-template-columns: $columns;
     grid-column-gap: 20px;
@@ -40,6 +47,7 @@
     @include b(tablet) {
       @include flex(column, flex-start);
     }
+
     &_pair {
       margin-right: 12px;
       @include b(tablet) {
@@ -71,13 +79,16 @@
 
   .label {
     display: none;
+
     font-size: 14px;
-    line-height: 17px;
-    opacity: 0.3;
     font-weight: 400;
+    line-height: 17px;
+
+    opacity: 0.3;
     @include b(tablet) {
-      display: block;
       margin-bottom: 5px;
+
+      display: block;
     }
   }
 
@@ -100,6 +111,7 @@
       gap: 0;
     }
   }
+
   .liquidity,
   .multiplier {
     @include b(tablet) {
@@ -112,11 +124,13 @@
       display: none;
     }
     margin-left: auto;
+
     .arrow_dropdown {
       @include flex(row, center);
       margin-left: 10px;
     }
   }
+
   .arrow_dropdown_mob {
     display: none;
 
@@ -127,7 +141,9 @@
 
   .farm_details {
     padding: 10px 59px 11px 26px;
+
     overflow: hidden;
+
     background: $bg-farm-details;
     @include flex(row, center, flex-start, wrap);
 
@@ -141,41 +157,51 @@
       @include flex(row, center, flex-start, nowrap);
       @include b(tablet) {
         @include flex(column);
+        margin-bottom: 20px;
         margin-left: 0;
         gap: 10px;
-        margin-bottom: 20px;
       }
     }
+
     .container {
       align-self: stretch;
+
       background: $bg-container-opacity;
       border-radius: 12px;
+
       .title {
-        text-transform: uppercase;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 17px;
         margin-bottom: 12px;
+
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 17px;
+        text-transform: uppercase;
         @include b(tablet) {
           text-align: center;
         }
       }
     }
+
     .earned_wrapper {
-      width: 450px;
       margin-right: 10px;
       padding: 20px 32px 42px 30px;
+
+      width: 450px;
       @include b(tablet) {
-        width: 100%;
         padding: 20px 10px;
+
+        width: 100%;
       }
 
       .harvest_container {
-        width: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        border-radius: 12px;
         padding: 21px 20px 21px 21px;
+
+        width: 100%;
+
+        background: rgb(0 0 0 / 50%);
+        border-radius: 12px;
         @include flex(row, center, space-between);
+
         .earned {
           font-size: 25px;
           line-height: 31px;
@@ -184,11 +210,13 @@
     }
 
     .actions_wrapper {
-      width: 262px;
       padding: 20px 30px;
+
+      width: 262px;
       @include b(tablet) {
-        width: 100%;
         padding: 20px 10px;
+
+        width: 100%;
       }
     }
   }
@@ -196,22 +224,28 @@
 
 :global(.show_farm_details-enter) {
   padding: 0;
+
   max-height: 0;
 }
 
 :global(.show_farm_details-enter-active) {
   padding: 10px 0;
+
   max-height: 192px;
+
   transition: padding 300ms, max-height 300ms;
 }
 
 :global(.show_farm_details-exit) {
   padding: 10px 0;
+
   max-height: 192px;
 }
 
 :global(.show_farm_details-exit-active) {
   padding: 0;
+
   max-height: 0;
+
   transition: padding 300ms, max-height 300ms;
 }

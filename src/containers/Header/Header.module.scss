@@ -2,18 +2,22 @@
 @import 'src/styles/mixins';
 
 .header_wrapper {
+  position: relative;
+  z-index: 110;
+
+  margin: 0 auto;
+  padding: 0 10px;
+
   width: 100%;
   max-width: 1120px;
-  padding: 0 10px;
-  margin: 0 auto;
-  z-index: 110;
-  position: relative;
   @include b(tablet) {
     padding: 0 12px 0 18px;
+
     height: 72px;
     @include flex(row, center);
     background: $bg-primary;
   }
+
   &.hide {
     display: none;
     @include b(tablet) {
@@ -23,22 +27,28 @@
 
   .header {
     @include flex(row, center, flex-end);
-    height: 62px;
     padding: 0 20px;
+
+    height: 62px;
+
     border-radius: 12px 0 0 12px;
-    //background-color: rgba(255, 255, 255, 0.1);
+    //background-color: rgb(255 255 255 / 10%);
     @include b(tablet) {
-      justify-content: flex-start;
       margin: 0;
-      width: 100%;
       padding: 0;
+
+      justify-content: flex-start;
+
+      width: 100%;
+
       background-color: transparent;
       border: 0;
     }
 
     .logo_mobile {
-      display: none;
       margin-left: 13px;
+
+      display: none;
       @include b(tablet) {
         display: block;
       }
@@ -50,30 +60,38 @@
       @include b(tablet) {
         display: none;
       }
+
       :first-child {
         margin-right: 26px;
       }
+
       :nth-child(2) {
         margin-right: 21px;
       }
     }
+
     .audits_sm {
       margin-left: auto;
+
       display: none;
       @include b(tablet) {
         @include flex(row, center);
       }
+
       :first-child {
         margin-right: 15px;
       }
+
       :nth-child(2) {
         margin-right: 23px;
       }
     }
+
     .btn_mobile {
       @include b(tablet) {
         font-size: 10px;
         line-height: 26px;
+
         svg {
           display: none;
         }

@@ -11,6 +11,7 @@
   .logo_wrapper {
     @include flex(row, center, flex-start, nowrap);
     margin-top: 20px;
+
     :nth-child(2) {
       margin-top: 9px;
       margin-left: 1px;
@@ -18,28 +19,35 @@
   }
 
   .coming_soon {
-    margin-top: 82px;
     position: relative;
+
+    margin-top: 82px;
+
     width: 316px;
     @include b(extramobile) {
       width: 70%;
     }
+
     img {
       object-fit: cover;
+
       max-width: 100%;
     }
+
     .title {
       position: absolute;
+      left: -148px;
+      bottom: -55px;
+
       font-family: 'Gemina', sans-serif;
       font-size: 120px;
       line-height: 100%;
       text-align: center;
-      left: -148px;
-      bottom: -55px;
       @include b(extramobile) {
-        font-size: 60px;
         left: -10px;
         bottom: 0;
+
+        font-size: 60px;
       }
     }
   }

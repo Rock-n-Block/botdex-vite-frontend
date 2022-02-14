@@ -2,31 +2,39 @@
 @import 'src/styles/mixins';
 
 .footer_wrapper {
-  z-index: 10;
   position: relative;
-  background: $bg-footer;
-  width: 100%;
+  z-index: 10;
+
   padding: 63px 10px 67px;
+
   overflow: hidden;
+
+  width: 100%;
+
+  background: $bg-footer;
 
   .footer {
     position: relative;
     z-index: 10;
     @include flex(column, center, center);
   }
+
   .logo {
     margin-bottom: 47px;
     @include flex(row, center, flex-start, nowrap);
+
     :nth-child(2) {
       margin-top: 15px;
       margin-left: 1px;
     }
+
     .desktop {
       display: block;
       @include b(tablet) {
         display: none;
       }
     }
+
     .mobile {
       display: none;
       @include b(tablet) {
@@ -44,16 +52,20 @@
       @include b(tablet) {
         align-items: center;
       }
+
       &:nth-of-type(2) {
-        margin-left: 60px;
         margin-right: 29px;
+        margin-left: 60px;
         @include b(tablet) {
           margin: 0 25px;
         }
       }
+
       .link {
-        white-space: nowrap;
         margin-bottom: 13px;
+
+        white-space: nowrap;
+
         &:last-of-type {
           margin-bottom: 0;
         }
@@ -71,17 +83,21 @@
     @include flex(column, center);
 
     .title {
-      font-weight: 500;
       font-size: 18px;
+      font-weight: 500;
       line-height: 22px;
     }
+
     .subtitle {
-      font-size: 14px;
-      line-height: 17px;
-      opacity: 0.5;
       margin-top: 6px;
       margin-bottom: 17px;
+
+      font-size: 14px;
+      line-height: 17px;
+
+      opacity: 0.5;
     }
+
     .socials {
       @include flex(row, center, space-between);
       gap: 13px;
@@ -90,25 +106,29 @@
 
   .policies {
     margin-top: 50px;
+
     :first-child {
       margin-right: 24px;
     }
   }
 
   .bg {
-    z-index: 0;
     position: absolute;
-    background: rgba(215, 21, 255, 0.2);
+    z-index: 0;
+    left: calc(50% - 437px);
+    bottom: -568px;
+
     width: 875px;
     height: 875px;
-    bottom: -568px;
-    left: calc(50% - 437px);
+
+    background: rgb(215 21 255 / 20%);
     filter: blur(250px);
     @include b(tablet) {
+      left: calc(50% - 98px);
+      bottom: -49px;
+
       width: 196px;
       height: 196px;
-      bottom: -49px;
-      left: calc(50% - 98px);
       filter: blur(100px);
     }
   }

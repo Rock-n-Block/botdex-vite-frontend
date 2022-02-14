@@ -8,76 +8,98 @@ $bg-m6: linear-gradient(180deg, #c630f6 0%, #710494 100%);
 $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
 
 .stake_card {
-  width: 260px;
   margin-bottom: 10px;
-  @include b(tablet) {
-    width: calc(100% / 2 - 20px);
-    justify-content: space-between;
-  }
-  @include b(mobile) {
-    width: 100%;
-    padding-bottom: 30px;
-  }
-  border-radius: 20px;
   padding: 30px 35px 40px;
 
+  width: 260px;
+
+  border-radius: 20px;
+  @include b(tablet) {
+    justify-content: space-between;
+
+    width: calc(100% / 2 - 20px);
+  }
+  @include b(mobile) {
+    padding-bottom: 30px;
+
+    width: 100%;
+  }
+
   &:nth-of-type(1) {
-    background: $bg-m1;
     margin-top: 60px;
+
+    background: $bg-m1;
+
     .stake_card__percent_wrapper {
       padding: 25px 0 50px;
+
       .percent {
         font-size: 40px;
         line-height: 50px;
       }
     }
+
     .stake_card__btn {
       &.ant-btn {
         color: $bg-m1;
       }
     }
   }
+
   &:nth-of-type(2) {
-    background: $bg-m3;
     margin-top: 40px;
+
+    background: $bg-m3;
+
     .stake_card__percent_wrapper {
       padding: 36px 0 46px;
+
       .percent {
         font-size: 50px;
         line-height: 62px;
       }
     }
+
     .stake_card__btn {
       &.ant-btn {
         color: $bg-divider;
       }
     }
   }
+
   &:nth-of-type(3n) {
-    background: $bg-m6;
     margin-top: 20px;
+
+    background: $bg-m6;
+
     .stake_card__percent_wrapper {
       padding: 41px 0 49px;
+
       .percent {
         font-size: 60px;
         line-height: 75px;
       }
     }
+
     .stake_card__btn {
       &.ant-btn {
         color: $bg-purple;
       }
     }
   }
+
   &:nth-of-type(4n) {
     background: $bg-m12;
+
     .stake_card__percent_wrapper {
       padding: 37px 0 60px;
+
       .percent {
         font-size: 70px;
         line-height: 87px;
       }
     }
+
     .stake_card__btn {
       &.ant-btn {
         color: $bg-purple;
@@ -88,27 +110,35 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
   &__content {
     @include flex(column, center);
   }
+
   &__lock {
     margin-bottom: 11px;
   }
+
   .lock {
     font-weight: 500;
   }
 
   &__percent_wrapper {
-    width: 100%;
-    text-align: center;
     margin: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+    width: 100%;
+
+    text-align: center;
+
+    border-top: 1px solid rgb(255 255 255 / 20%);
+    border-bottom: 1px solid rgb(255 255 255 / 20%);
     @include b(mobile) {
-      padding: 20px 0 20px !important;
+      padding: 20px 0 !important;
     }
 
     .percent {
-      color: white;
       margin-bottom: 10px;
+
       font-weight: bold;
+
+      color: white;
+
       &_token {
         opacity: 0.5;
       }
@@ -116,8 +146,8 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
   }
 
   .start_staking {
-    font-weight: 500;
     font-size: 18px;
+    font-weight: 500;
     line-height: 22px;
   }
 
@@ -132,25 +162,29 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
 
   .details_wrapper {
     margin-top: 10px;
-    @include flex(column, center, flex-start);
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-    padding: 20px;
-    margin-left: -25px;
     margin-bottom: -25px;
+    margin-left: -25px;
+    padding: 20px;
+
     width: calc(100% + 50px);
+
+    background: rgb(0 0 0 / 50%);
+    border-radius: 20px;
+    @include flex(column, center, flex-start);
 
     .label {
       margin-top: 20px;
-      font-weight: 500;
+
       font-size: 18px;
+      font-weight: 500;
       line-height: 22px;
+
       opacity: 0.5;
     }
 
     .content {
-      font-weight: 500;
       font-size: 18px;
+      font-weight: 500;
       line-height: 22px;
     }
   }
@@ -158,24 +192,32 @@ $bg-m12: linear-gradient(180deg, #0a42ea 0%, #112478 100%);
 
 :global(.show_details-enter) {
   margin-top: 0;
+
   max-height: 0;
+
   opacity: 0;
 }
 
 :global(.show_details-enter-active) {
   max-height: 3500px;
+
   opacity: 1;
+
   transition: max-height 300ms, opacity 300ms;
 }
 
 :global(.show_details-exit) {
   max-height: 3500px;
+
   opacity: 1;
 }
 
 :global(.show_details-exit-active) {
   margin-top: 0;
+
   max-height: 0;
+
   opacity: 0;
+
   transition: max-height 200ms, opacity 200ms;
 }

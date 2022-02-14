@@ -3,18 +3,22 @@
 
 .modal_wrapper {
   position: relative;
-  max-width: 390px;
-  width: 100%;
-  background: $bg-container;
-  box-shadow: 0 12px 40px rgba(85, 32, 142, 0.25);
-  border-radius: 12px;
+
   padding: 20px;
+
+  width: 100%;
+  max-width: 390px;
+
+  background: $bg-container;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgb(85 32 142 / 25%);
 
   .modal_header {
     @include flex(row, center, space-between);
     font-size: 18px;
     line-height: 22px;
   }
+
   .modal_close {
     cursor: pointer;
   }
