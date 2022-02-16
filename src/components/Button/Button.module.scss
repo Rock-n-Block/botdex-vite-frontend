@@ -13,8 +13,11 @@ $text-default: white;
 
   cursor: pointer;
 
-  background: transparent;
-  border: none;
+  background-color: transparent;
+
+  border: 1px solid transparent;
+
+  transition: 0.35s;
   @include flex(row, center, center, nowrap);
 
   &.blue {
@@ -42,7 +45,7 @@ $text-default: white;
     line-height: 26px;
 
     color: $text-default;
-    background: #c630f6;
+    background-color: #c630f6;
     border-radius: 11px;
     box-shadow: 0 5px 0 #6e1989;
   }
@@ -55,7 +58,7 @@ $text-default: white;
     line-height: 26px;
 
     color: linear-gradient(98.94deg, #1d125b -22.87%, #090413 94.67%);
-    background: #f4f4f4;
+    background-color: #f4f4f4;
     border-radius: 12px;
     box-shadow: 0 12px 40px rgb(0 0 0 / 10%);
   }
@@ -68,8 +71,16 @@ $text-default: white;
     line-height: 26px;
 
     color: $text-default;
-    background: linear-gradient(0deg, rgb(255 255 255 / 20%), rgb(255 255 255 / 20%));
+    background-color: rgba(#c1c1c1, 0.1);
     border-radius: 12px;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: $text-primary;
+      background-color: transparent;
+      border-color: #7649fe;
+    }
   }
 
   &.outline {
@@ -97,7 +108,7 @@ $text-default: white;
   &.disabled {
     cursor: not-allowed;
 
-    background: rgb(197 196 195 / 50%);
+    background-color: rgb(197 196 195 / 50%);
 
     &:hover,
     &:focus {

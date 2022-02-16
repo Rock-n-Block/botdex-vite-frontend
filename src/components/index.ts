@@ -7,3 +7,4 @@ export { default as RadioGroup } from './RadioGroup';
 export { default as Search } from './Search';
 export { default as SortSelect } from './SortSelect';
 export { default as Popover } from './Popover';
+export { default as ExchangeForm } from './ExchangeForm';

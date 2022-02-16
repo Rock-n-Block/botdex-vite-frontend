@@ -2,4 +2,12 @@
 @import 'src/styles/mixins';
 
 .exchange_wrapper {
+  z-index: 10;
+
+  padding-top: 90px;
+  padding-left: 0;
+  padding-bottom: 90px;
+  @include flex(row, center, center, nowrap);
+  grid-gap: 0;
+  gap: 0;
 }

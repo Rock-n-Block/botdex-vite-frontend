@@ -22,7 +22,7 @@ export { ReactComponent as LogoTextFooter } from './icons/logo_text_footer.svg';
 export { ReactComponent as LogoTextFooterSm } from './icons/logo_text_footer_sm.svg';
 
 export { default as ArrowImg } from './icons/arrow-dropdown.svg';
-export { default as ArrowLgImg } from './icons/arrow_lg.svg';
+export { ReactComponent as ArrowLgImg } from './icons/arrow_lg.svg';
 
 export { ReactComponent as WalletImg } from './icons/wallet.svg';
 
@@ -44,3 +44,6 @@ export { default as NoLogoToken } from './icons/empty_token.png';
 export { default as CalcImg } from './icons/calc.svg';
 export { default as ExternalLinkImg } from './icons/ex_link.svg';
 export { default as VerifiedImg } from './icons/check.svg';
+
+export { ReactComponent as SettingsImg } from './icons/settings.svg';
+export { ReactComponent as RecentImg } from './icons/recent-tx.svg';
